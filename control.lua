@@ -3,8 +3,8 @@
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
 script.on_nth_tick(6000, function(event)
-	if global.wind >= 1800 then
-		global.wind = 0
+	if storage.wind >= 1800 then
+		storage.wind = 0
 	end
 end)
 
@@ -17,12 +17,12 @@ local output_modifiers = {
 }
 
 script.on_nth_tick(120, function(event)
-	global.wind = global.wind + 0.02
-	local x = global.wind
+	storage.wind = storage.wind + 0.02
+	local x = storage.wind
 	local y = ((math.sin(3*x/2)/3)+(math.sin(2*x/2+2)/3)+(math.sin(3*x/2-3)/2)-(math.sin(4*x/2+1)/3)-
 	(math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655
 
-	for _, wind_turbine in pairs(global.wind_turbines) do
+	for _, wind_turbine in pairs(storage.wind_turbines) do
 		if wind_turbine[1].valid and wind_turbine[1].type == 'electric-energy-interface' then
 			wind_turbine[1].power_production = y * 67500/60 * powersetting * output_modifiers[wind_turbine[2]]
 		end
@@ -30,8 +30,8 @@ script.on_nth_tick(120, function(event)
 end)
 
 local function create_vars()
-	global.wind = global.wind or 0
-	global.wind_turbines = global.wind_turbines or {}
+	storage.wind = storage.wind or 0
+	storage.wind_turbines = storage.wind_turbines or {}
 end
 
 script.on_init(create_vars)
@@ -55,23 +55,25 @@ local reverse_map = {
 script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity, defines.events.script_raised_revive}, function(event)
 	local entity = event.created_entity or event.entity
     if turbine_map[entity.name] then
-		local registration_number = script.register_on_entity_destroyed(entity)
-        global.wind_turbines[registration_number] = {entity, entity.name, entity.position, entity.surface}
+		local registration_number = script.register_on_object_destroyed(entity)
+        storage.wind_turbines[registration_number] = {entity, entity.name, entity.position, entity.surface}
 		local collision_rect = entity.surface.create_entity{name = turbine_map[entity.name], position = entity.position, force = entity.force}
 		collision_rect.minable = false
 		collision_rect.health = entity.health
     end
 end)
 
-script.on_event(defines.events.on_entity_destroyed, function(event)
-	local entity = global.wind_turbines[event.registration_number]
+script.on_event(defines.events.on_object_destroyed, function(event)
+	log(serpent.block(event))
+	local entity = storage.wind_turbines[event.registration_number]
+	log(serpent.block(entity))
 	if entity and turbine_map[entity[2]] then
 		for _, collision_rect in pairs(entity[4].find_entities_filtered{position = entity[3], name = turbine_map[entity[2]]}) do
 			collision_rect.destroy()
 		end
 	end
---	table.remove(global.wind_turbines, event.registration_number)
-	global.wind_turbines[event.registration_number] = nil
+--	table.remove(storage.wind_turbines, event.registration_number)
+	storage.wind_turbines[event.registration_number] = nil
 end)
 
 

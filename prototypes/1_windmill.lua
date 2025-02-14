@@ -2,7 +2,7 @@ data:extend({
 	-- Item, Recipe and Tech
 	{
 		type = 'item',
-		name = 'texugo-wind-turbine-item',
+		name = 'texugo-wind-turbine',
 		icon = sprite('windw_icon.png'),
 		icon_size = 32,
 		group = 'logistics',
@@ -14,7 +14,7 @@ data:extend({
 	-- The Windmill requires no research and is automatically enabled from game start
 	{
 		type = 'recipe',
-		name = 'texugo-wind-turbine-recipe',
+		name = 'texugo-wind-turbine',
 		icon = sprite('windw_icon.png'),
 		icon_size = 32,
 		normal = {
@@ -24,7 +24,7 @@ data:extend({
 				{ 'electronic-circuit', 2 },
 				{ 'small-electric-pole', 8 }
 			},
-			result = 'texugo-wind-turbine-item'
+			result = 'texugo-wind-turbine'
 		},
 		expensive = {
 			energy_required = 6,
@@ -33,7 +33,7 @@ data:extend({
 				{ 'electronic-circuit', 3 },
 				{ 'small-electric-pole', 8 }
 			},
-			result = 'texugo-wind-turbine-item'
+			result = 'texugo-wind-turbine'
 		}
 	},
 })
@@ -46,7 +46,7 @@ data:extend({
 		icon = '__Wind_Generator-gfxrestyle__/graphics/windw_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
-		minable = {mining_time = 0.1, result = 'texugo-wind-turbine-item'},
+		minable = {mining_time = 0.1, result = 'texugo-wind-turbine'},
 		max_health = 100,
 		corpse = 'medium-small-remnants',
 		dying_explosion = 'explosion',

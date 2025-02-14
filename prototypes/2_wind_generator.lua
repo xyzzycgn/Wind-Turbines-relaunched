@@ -94,6 +94,7 @@ data:extend({
 		type = 'recipe',
 		name = 'texugo-wind-turbine2',
 		icon = sprite 'winds_icon.png',
+		icon_size = 32,
 		normal = {
 			enabled = false,
 			energy_required = 15,
@@ -122,7 +123,7 @@ data:extend({
 		name = 'texugo-wind-turbine2',
 		icon = '__Wind_Generator-gfxrestyle__/graphics/winds_tec.png',
 		icon_size = 128,
-		prerequisites = {"electric-energy-distribution-1", "advanced-electronics", "stone-wall"},
+		prerequisites = {"electric-energy-distribution-1", "advanced-circuit", "stone-wall"},
 		effects = {
 			{
 				type = 'unlock-recipe',

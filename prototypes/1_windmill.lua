@@ -16,6 +16,7 @@ data:extend({
 		type = 'recipe',
 		name = 'texugo-wind-turbine-recipe',
 		icon = sprite('windw_icon.png'),
+		icon_size = 32,
 		normal = {
 			energy_required = 4,
 			ingredients = {

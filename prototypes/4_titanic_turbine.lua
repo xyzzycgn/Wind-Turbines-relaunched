@@ -387,12 +387,13 @@ data:extend({
 		type = 'recipe',
 		name = 'texugo-wind-turbine4',
 		icon = sprite "titanicicon.png",
+		icon_size = 64,
 		normal = {
 			enabled = false,
 			energy_required = 240,
 			ingredients = {
 				{'low-density-structure', 400},
-				{'rocket-control-unit', 50},
+				--{'rocket-control-unit', 50},
 				{'heat-pipe', 50},
 				{'steam-turbine', 10},
 				{'steel-plate', 2000},
@@ -405,7 +406,7 @@ data:extend({
 			energy_required = 400,
 			ingredients = {
 				{'low-density-structure', 500},
-				{'rocket-control-unit', 100},
+				--{'rocket-control-unit', 100},
 				{'heat-pipe', 100},
 				{'steam-turbine', 10},
 				{'steel-plate', 3000},
@@ -419,7 +420,8 @@ data:extend({
 		name = "texugo-wind-turbine4",
 		icon = "__Wind_Generator-gfxrestyle__/graphics/titanictech.png",
 		icon_size = 128,
-		prerequisites = {"rocket-control-unit",  "nuclear-power", "texugo-wind-turbine3"},
+		--prerequisites = {"rocket-control-unit",  "nuclear-power", "texugo-wind-turbine3"},
+		prerequisites = { "nuclear-power", "texugo-wind-turbine3"},
 		effects = {
 			{
 				type = "unlock-recipe",

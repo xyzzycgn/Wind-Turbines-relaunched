@@ -113,6 +113,7 @@ data:extend({
 		type = 'recipe',
 		name = 'texugo-wind-turbine3',
 		icon = sprite 'windh_icon.png',
+		icon_size = 32,
 		normal = {
 			enabled = false,
 			energy_required = 60,
@@ -143,7 +144,7 @@ data:extend({
 		name = 'texugo-wind-turbine3',
 		icon = '__Wind_Generator-gfxrestyle__/graphics/windh_tec.png',
 		icon_size = 128,
-		prerequisites = {"electric-engine", "advanced-electronics-2", "concrete", "texugo-wind-turbine2"},
+		prerequisites = {"electric-engine", "processing-unit", "concrete", "texugo-wind-turbine2"},
 		effects = {
 			{
 				type = 'unlock-recipe',

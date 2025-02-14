@@ -17,24 +17,14 @@ data:extend({
 		name = 'texugo-wind-turbine',
 		icon = sprite('windw_icon.png'),
 		icon_size = 32,
-		normal = {
-			energy_required = 4,
-			ingredients = {
-				{ 'iron-gear-wheel', 5 },
-				{ 'electronic-circuit', 2 },
-				{ 'small-electric-pole', 8 }
-			},
-			result = 'texugo-wind-turbine'
+		enabled = true,
+		energy = 4,
+		ingredients = {
+			{ type = "item", name = 'iron-gear-wheel',     amount = 5 },
+			{ type = "item", name = 'electronic-circuit',  amount = 2 },
+			{ type = "item", name = 'small-electric-pole', amount = 8 }
 		},
-		expensive = {
-			energy_required = 6,
-			ingredients = {
-				{ 'iron-gear-wheel', 10 },
-				{ 'electronic-circuit', 3 },
-				{ 'small-electric-pole', 8 }
-			},
-			result = 'texugo-wind-turbine'
-		}
+		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
 	},
 })
 

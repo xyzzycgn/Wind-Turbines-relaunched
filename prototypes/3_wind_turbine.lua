@@ -114,30 +114,16 @@ data:extend({
 		name = 'texugo-wind-turbine3',
 		icon = sprite 'windh_icon.png',
 		icon_size = 32,
-		normal = {
-			enabled = false,
-			energy_required = 60,
-			ingredients = {
-				{'processing-unit', 15},
-				{'electric-engine-unit', 40},
-				{'steel-plate', 200},
-				{'plastic-bar', 300},
-				{'concrete', 400}
-			},
-			result = 'texugo-wind-turbine3'
+		enabled = false,
+		energy = 60,
+		ingredients = {
+			{ type = "item", name = 'processing-unit',      amount = 15},
+			{ type = "item", name = 'electric-engine-unit', amount = 40},
+			{ type = "item", name = 'steel-plate', 			amount = 200},
+			{ type = "item", name = 'plastic-bar', 			amount = 300},
+			{ type = "item", name = 'concrete',    			amount = 400}
 		},
-		expensive = {
-			enabled = false,
-			energy_required = 90,
-			ingredients = {
-				{'processing-unit', 25},
-				{'electric-engine-unit', 80},
-				{'steel-plate', 400},
-				{'plastic-bar', 500},
-				{'concrete', 1000}
-			},
-			result = 'texugo-wind-turbine3'
-		}
+		results = {{ type = "item", name = 'texugo-wind-turbine3', amount = 1 }},
 	},
 	{
 		type = 'technology',

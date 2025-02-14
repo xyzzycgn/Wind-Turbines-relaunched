@@ -388,32 +388,18 @@ data:extend({
 		name = 'texugo-wind-turbine4',
 		icon = sprite "titanicicon.png",
 		icon_size = 64,
-		normal = {
-			enabled = false,
-			energy_required = 240,
-			ingredients = {
-				{'low-density-structure', 400},
-				--{'rocket-control-unit', 50},
-				{'heat-pipe', 50},
-				{'steam-turbine', 10},
-				{'steel-plate', 2000},
-				{'refined-concrete', 1000}
-			},
-			result = 'texugo-wind-turbine4'
+		enabled = false,
+		energy = 240,
+		ingredients = {
+			{ type = "item", name = 'low-density-structure',   amount = 400},
+			{ type = "item", name = 'processing-unit',         amount = 50},
+			{ type = "item", name = 'speed-module',            amount = 50},
+			{ type = "item", name = 'heat-pipe',        	   amount = 50},
+			{ type = "item", name = 'steam-turbine',    	   amount = 10},
+			{ type = "item", name = 'steel-plate',      	   amount = 2000},
+			{ type = "item", name = 'refined-concrete', 	   amount = 1000}
 		},
-		expensive = {
-			enabled = false,
-			energy_required = 400,
-			ingredients = {
-				{'low-density-structure', 500},
-				--{'rocket-control-unit', 100},
-				{'heat-pipe', 100},
-				{'steam-turbine', 10},
-				{'steel-plate', 3000},
-				{'refined-concrete', 2000}
-			},
-			result = 'texugo-wind-turbine4'
-		}
+		results = {{ type = "item", name = 'texugo-wind-turbine4', amount = 1 }},
 	},
 	{
 		type = "technology",

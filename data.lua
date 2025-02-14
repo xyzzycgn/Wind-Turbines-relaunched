@@ -1,4 +1,4 @@
---And these two make defining common file paths much shorter.
+-- makes defining common file paths much shorter.
 function sprite(name)
     return '__Wind_Generator-gfxrestyle__/graphics/' .. name
 end

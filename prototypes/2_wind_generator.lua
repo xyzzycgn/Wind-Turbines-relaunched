@@ -95,28 +95,15 @@ data:extend({
 		name = 'texugo-wind-turbine2',
 		icon = sprite 'winds_icon.png',
 		icon_size = 32,
-		normal = {
-			enabled = false,
-			energy_required = 15,
-			ingredients = {
-				{'advanced-circuit', 5},
-				{'engine-unit', 10},
-				{'medium-electric-pole', 5},
-				{'stone-wall', 5}
-			},
-			result = 'texugo-wind-turbine2'
+		enabled = false,
+		energy = 15,
+		ingredients = {
+			{ type = "item", name = 'advanced-circuit',     amount = 5},
+			{ type = "item", name = 'engine-unit',          amount = 10},
+			{ type = "item", name = 'medium-electric-pole', amount = 5},
+			{ type = "item", name = 'stone-wall',           amount = 5}
 		},
-		expensive = {
-			enabled = false,
-			energy_required = 25,
-			ingredients = {
-				{'advanced-circuit', 8},
-				{'engine-unit', 20},
-				{'medium-electric-pole', 5},
-				{'stone-wall', 20}
-			},
-			result = 'texugo-wind-turbine2'
-		}
+		results = {{ type = "item", name = 'texugo-wind-turbine2', amount = 1 }},
 	},
 	{
 		type = 'technology',

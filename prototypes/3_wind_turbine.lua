@@ -1,4 +1,4 @@
-data:extend{
+data:extend({
 	-- World Entities
 	{
 		type = 'electric-energy-interface',
@@ -101,7 +101,7 @@ data:extend{
 	{
 		type = 'item',
 		name = 'texugo-wind-turbine3',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/windh_icon.png',
+		icon = sprite 'windh_icon.png',
 		icon_size = 32,
 		group = 'logistics',
 		subgroup = 'energy',
@@ -112,6 +112,7 @@ data:extend{
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine3',
+		icon = sprite 'windh_icon.png',
 		normal = {
 			enabled = false,
 			energy_required = 60,
@@ -159,4 +160,4 @@ data:extend{
 			time = 60
 		}
 	}
-}
+})

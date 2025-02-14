@@ -375,7 +375,7 @@ data:extend({
 	{
 		type = "item",
 		name = "texugo-wind-turbine4",
-		icon = "__Wind_Generator-gfxrestyle__/graphics/titanicicon.png",
+		icon = sprite "titanicicon.png",
 		icon_size = 64,
 		group = "logistics",
 		subgroup = "energy",
@@ -386,6 +386,7 @@ data:extend({
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine4',
+		icon = sprite "titanicicon.png",
 		normal = {
 			enabled = false,
 			energy_required = 240,

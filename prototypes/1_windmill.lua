@@ -54,7 +54,7 @@ data:extend({
 			{type = 'impact', percent = 15}
 		},
 		fast_replaceable_group = 'texugo-wind-turbine',
-		collision_mask = {'item-layer', 'object-layer', 'water-tile'},
+		collision_mask = { layers = { item = true, object = true, water_tile = true } },
 		collision_box = {{-1.4, -2.9}, {1.4, 0.9}},
 		selection_box = {{-1.5, -3}, {1.5, 1}},
 

@@ -16,7 +16,7 @@ data:extend({
 		corpse = 'big-remnants',
 		dying_explosion = 'big-explosion',
 		fast_replaceable_group = 'texugo-wind-turbine3',
-		collision_mask = {'item-layer', 'object-layer', 'water-tile'},
+		collision_mask = { layers = { item = true, object = true, water_tile = true } },
 		collision_box = {{-2.9, -7.4}, {2.9, 1.4}},
 		selection_box = {{-3, -7.5}, {3, 1.5}},
 		energy_source = {

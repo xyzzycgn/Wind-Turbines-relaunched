@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: 2025-02-20
+Date: 2025-02-19
   Features:
     - ported to V 2.0 of game
     - compatible with both base game and space age extension

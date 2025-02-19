@@ -3,7 +3,7 @@ data:extend({
 	{
 		type = 'item',
 		name = 'texugo-wind-turbine',
-		icon = sprite('windw_icon.png'),
+		icon = sprite 'windw_icon.png',
 		icon_size = 32,
 		group = 'logistics',
 		subgroup = 'energy',
@@ -15,7 +15,7 @@ data:extend({
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine',
-		icon = sprite('windw_icon.png'),
+		icon = sprite 'windw_icon.png',
 		icon_size = 32,
 		enabled = true,
 		energy = 4,
@@ -33,7 +33,7 @@ data:extend({
 	{
 		type = 'electric-energy-interface',
 		name = 'texugo-wind-turbine',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/windw_icon.png',
+		icon = sprite 'windw_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
 		minable = {mining_time = 0.1, result = 'texugo-wind-turbine'},
@@ -63,17 +63,17 @@ data:extend({
 		animation = {
 			stripes = {
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/wind1.png',
+					filename = sprite 'wind1.png',
 					width_in_frames = 4,
 					height_in_frames = 5
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/wind2.png',
+					filename = sprite 'wind2.png',
 					width_in_frames = 4,
 					height_in_frames = 5
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/wind3.png',
+					filename = sprite 'wind3.png',
 					width_in_frames = 4,
 					height_in_frames = 5
 				}

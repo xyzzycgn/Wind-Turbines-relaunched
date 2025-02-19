@@ -5,7 +5,7 @@ data:extend({
     {
         type = 'electric-energy-interface',
         name = 'texugo-wind-turbine4',
-        icon = '__Wind_Generator-gfxrestyle__/graphics/titanicicon.png',
+        icon = sprite 'titanicicon.png',
         icon_size = 64,
         flags = {"player-creation", "placeable-neutral", "not-rotatable", "not-flammable"},
         minable = {mining_time = 3, result = 'texugo-wind-turbine4'},
@@ -37,63 +37,63 @@ data:extend({
         animation = {
 			stripes = {
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_0104.png',
+					filename = sprite 'titanic-lr/tlr_0104.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_0508.png',
+					filename = sprite 'titanic-lr/tlr_0508.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_0912.png',
+					filename = sprite 'titanic-lr/tlr_0912.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_1316.png',
+					filename = sprite 'titanic-lr/tlr_1316.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_1720.png',
+					filename = sprite 'titanic-lr/tlr_1720.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_2124.png',
+					filename = sprite 'titanic-lr/tlr_2124.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_2528.png',
+					filename = sprite 'titanic-lr/tlr_2528.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_2932.png',
+					filename = sprite 'titanic-lr/tlr_2932.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_3336.png',
+					filename = sprite 'titanic-lr/tlr_3336.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_3740.png',
+					filename = sprite 'titanic-lr/tlr_3740.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_4144.png',
+					filename = sprite 'titanic-lr/tlr_4144.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_4548.png',
+					filename = sprite 'titanic-lr/tlr_4548.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_4952.png',
+					filename = sprite 'titanic-lr/tlr_4952.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_5356.png',
+					filename = sprite 'titanic-lr/tlr_5356.png',
 					width_in_frames = 2, height_in_frames = 2
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-lr/tlr_5760.png',
+					filename = sprite 'titanic-lr/tlr_5760.png',
 					width_in_frames = 2, height_in_frames = 2
 				}
 			},
@@ -106,243 +106,243 @@ data:extend({
 			hr_version = {
 				stripes = {
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic01.png',
+						filename = sprite 'titanic-hr/titanic01.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic02.png',
+						filename = sprite 'titanic-hr/titanic02.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic03.png',
+						filename = sprite 'titanic-hr/titanic03.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic04.png',
+						filename = sprite 'titanic-hr/titanic04.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic05.png',
+						filename = sprite 'titanic-hr/titanic05.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic06.png',
+						filename = sprite 'titanic-hr/titanic06.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic07.png',
+						filename = sprite 'titanic-hr/titanic07.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic08.png',
+						filename = sprite 'titanic-hr/titanic08.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic09.png',
+						filename = sprite 'titanic-hr/titanic09.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic10.png',
+						filename = sprite 'titanic-hr/titanic10.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic11.png',
+						filename = sprite 'titanic-hr/titanic11.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic12.png',
+						filename = sprite 'titanic-hr/titanic12.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic13.png',
+						filename = sprite 'titanic-hr/titanic13.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic14.png',
+						filename = sprite 'titanic-hr/titanic14.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic15.png',
+						filename = sprite 'titanic-hr/titanic15.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic16.png',
+						filename = sprite 'titanic-hr/titanic16.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic17.png',
+						filename = sprite 'titanic-hr/titanic17.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic18.png',
+						filename = sprite 'titanic-hr/titanic18.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic19.png',
+						filename = sprite 'titanic-hr/titanic19.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic20.png',
+						filename = sprite 'titanic-hr/titanic20.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic21.png',
+						filename = sprite 'titanic-hr/titanic21.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic22.png',
+						filename = sprite 'titanic-hr/titanic22.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic23.png',
+						filename = sprite 'titanic-hr/titanic23.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic24.png',
+						filename = sprite 'titanic-hr/titanic24.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic25.png',
+						filename = sprite 'titanic-hr/titanic25.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic26.png',
+						filename = sprite 'titanic-hr/titanic26.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic27.png',
+						filename = sprite 'titanic-hr/titanic27.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic28.png',
+						filename = sprite 'titanic-hr/titanic28.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic29.png',
+						filename = sprite 'titanic-hr/titanic29.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic30.png',
+						filename = sprite 'titanic-hr/titanic30.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic31.png',
+						filename = sprite 'titanic-hr/titanic31.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic32.png',
+						filename = sprite 'titanic-hr/titanic32.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic33.png',
+						filename = sprite 'titanic-hr/titanic33.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic34.png',
+						filename = sprite 'titanic-hr/titanic34.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic35.png',
+						filename = sprite 'titanic-hr/titanic35.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic36.png',
+						filename = sprite 'titanic-hr/titanic36.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic37.png',
+						filename = sprite 'titanic-hr/titanic37.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic38.png',
+						filename = sprite 'titanic-hr/titanic38.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic39.png',
+						filename = sprite 'titanic-hr/titanic39.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic40.png',
+						filename = sprite 'titanic-hr/titanic40.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic41.png',
+						filename = sprite 'titanic-hr/titanic41.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic42.png',
+						filename = sprite 'titanic-hr/titanic42.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic43.png',
+						filename = sprite 'titanic-hr/titanic43.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic44.png',
+						filename = sprite 'titanic-hr/titanic44.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic45.png',
+						filename = sprite 'titanic-hr/titanic45.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic46.png',
+						filename = sprite 'titanic-hr/titanic46.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic47.png',
+						filename = sprite 'titanic-hr/titanic47.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic48.png',
+						filename = sprite 'titanic-hr/titanic48.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic49.png',
+						filename = sprite 'titanic-hr/titanic49.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic50.png',
+						filename = sprite 'titanic-hr/titanic50.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic51.png',
+						filename = sprite 'titanic-hr/titanic51.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic52.png',
+						filename = sprite 'titanic-hr/titanic52.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic53.png',
+						filename = sprite 'titanic-hr/titanic53.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic54.png',
+						filename = sprite 'titanic-hr/titanic54.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic55.png',
+						filename = sprite 'titanic-hr/titanic55.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic56.png',
+						filename = sprite 'titanic-hr/titanic56.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic57.png',
+						filename = sprite 'titanic-hr/titanic57.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic58.png',
+						filename = sprite 'titanic-hr/titanic58.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic59.png',
+						filename = sprite 'titanic-hr/titanic59.png',
 						width_in_frames = 1, height_in_frames = 1
 					},
 					{
-						filename = '__Wind_Generator-gfxrestyle__/graphics/titanic-hr/titanic60.png',
+						filename = sprite 'titanic-hr/titanic60.png',
 						width_in_frames = 1, height_in_frames = 1
 					}
 				},

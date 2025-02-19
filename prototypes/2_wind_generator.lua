@@ -3,7 +3,7 @@ data:extend({
 	{
 		type = 'electric-energy-interface',
 		name = 'texugo-wind-turbine2',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/winds_icon.png',
+		icon = sprite 'winds_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
 		minable = {mining_time = 0.3, result = 'texugo-wind-turbine2'},
@@ -34,22 +34,22 @@ data:extend({
 		animation = {
 			stripes = {
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/winds1.png',
+					filename = sprite 'winds1.png',
 					width_in_frames = 3,
 					height_in_frames = 4
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/winds2.png',
+					filename = sprite 'winds2.png',
 					width_in_frames = 3,
 					height_in_frames = 4
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/winds3.png',
+					filename = sprite 'winds3.png',
 					width_in_frames = 3,
 					height_in_frames = 4
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/winds4.png',
+					filename = sprite 'winds4.png',
 					width_in_frames = 3,
 					height_in_frames = 4
 				}
@@ -108,7 +108,7 @@ data:extend({
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine2',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/winds_tec.png',
+		icon = sprite 'winds_tec.png',
 		icon_size = 128,
 		prerequisites = {"electric-energy-distribution-1", "advanced-circuit", "stone-wall"},
 		effects = {

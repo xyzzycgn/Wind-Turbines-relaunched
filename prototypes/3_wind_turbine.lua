@@ -3,7 +3,7 @@ data:extend({
 	{
 		type = 'electric-energy-interface',
 		name = 'texugo-wind-turbine3',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/windh_icon.png',
+		icon = sprite 'windh_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
 		minable = {mining_time = 1, result = 'texugo-wind-turbine3'},
@@ -33,42 +33,42 @@ data:extend({
 		animation = {
 			stripes = {
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh1.png',
+					filename = sprite 'windh1.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh2.png',
+					filename = sprite 'windh2.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh3.png',
+					filename = sprite 'windh3.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh4.png',
+					filename = sprite 'windh4.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh5.png',
+					filename = sprite 'windh5.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh6.png',
+					filename = sprite 'windh6.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh7.png',
+					filename = sprite 'windh7.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				},
 				{
-					filename = '__Wind_Generator-gfxrestyle__/graphics/windh8.png',
+					filename = sprite 'windh8.png',
 					width_in_frames = 2,
 					height_in_frames = 3
 				}
@@ -128,7 +128,7 @@ data:extend({
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine3',
-		icon = '__Wind_Generator-gfxrestyle__/graphics/windh_tec.png',
+		icon = sprite 'windh_tec.png',
 		icon_size = 128,
 		prerequisites = {"electric-engine", "processing-unit", "concrete", "texugo-wind-turbine2"},
 		effects = {

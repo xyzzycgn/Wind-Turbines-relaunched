@@ -174,8 +174,8 @@ data:extend({
 		energy = 240,
 		ingredients = {
 			{ type = "item", name = 'low-density-structure',   amount = 400},
-			{ type = "item", name = 'processing-unit',         amount = 50},
-			{ type = "item", name = 'speed-module',            amount = 50},
+			{ type = "item", name = 'processing-unit',         amount = 70},
+			{ type = "item", name = 'speed-module',            amount = 70},
 			{ type = "item", name = 'heat-pipe',        	   amount = 50},
 			{ type = "item", name = 'steam-turbine',    	   amount = 10},
 			{ type = "item", name = 'steel-plate',      	   amount = 2000},
@@ -186,9 +186,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "texugo-wind-turbine4",
-		icon = "__Wind_Generator-gfxrestyle__/graphics/titanictech.png",
+		icon = sprites.sprite "titanictech.png",
 		icon_size = 128,
-		--prerequisites = {"rocket-control-unit",  "nuclear-power", "texugo-wind-turbine3"},
 		prerequisites = { "nuclear-power", "texugo-wind-turbine3"},
 		effects = {
 			{

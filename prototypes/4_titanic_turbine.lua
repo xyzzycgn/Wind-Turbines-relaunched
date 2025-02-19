@@ -186,9 +186,8 @@ data:extend({
 	{
 		type = "technology",
 		name = "texugo-wind-turbine4",
-		icon = "__Wind_Generator-gfxrestyle__/graphics/titanictech.png",
+		icon = sprites.sprite "titanictech.png",
 		icon_size = 128,
-		--prerequisites = {"rocket-control-unit",  "nuclear-power", "texugo-wind-turbine3"},
 		prerequisites = { "nuclear-power", "texugo-wind-turbine3"},
 		effects = {
 			{

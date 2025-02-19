@@ -7,7 +7,7 @@ local sprites = {}
 
 
 function sprites.sprite(name)
-    return '__Wind_Generator-gfxrestyle__/graphics/' .. name
+    return '__Wind-Turbines-relaunched__/graphics/' .. name
 end
 
 function sprites.stripe(name, width_in_frames, height_in_frames )

@@ -1,8 +1,3 @@
--- makes defining common file paths much shorter.
-function sprite(name)
-    return '__Wind_Generator-gfxrestyle__/graphics/' .. name
-end
-
 require 'prototypes.1_windmill'
 require 'prototypes.2_wind_generator'
 require 'prototypes.3_wind_turbine'

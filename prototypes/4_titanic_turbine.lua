@@ -1,3 +1,5 @@
+local sprites = require('sprites')
+
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if settings.startup["texugo-wind-turbine4"].value then
 data:extend({
@@ -5,7 +7,7 @@ data:extend({
     {
         type = 'electric-energy-interface',
         name = 'texugo-wind-turbine4',
-        icon = sprite 'titanicicon.png',
+        icon = sprites.sprite 'titanicicon.png',
         icon_size = 64,
         flags = {"player-creation", "placeable-neutral", "not-rotatable", "not-flammable"},
         minable = {mining_time = 3, result = 'texugo-wind-turbine4'},
@@ -36,66 +38,21 @@ data:extend({
 		continuous_animation = false,
         animation = {
 			stripes = {
-				{
-					filename = sprite 'titanic-lr/tlr_0104.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_0508.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_0912.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_1316.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_1720.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_2124.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_2528.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_2932.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_3336.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_3740.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_4144.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_4548.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_4952.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_5356.png',
-					width_in_frames = 2, height_in_frames = 2
-				},
-				{
-					filename = sprite 'titanic-lr/tlr_5760.png',
-					width_in_frames = 2, height_in_frames = 2
-				}
+				sprites.stripe('titanic-lr/tlr_0104.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_0508.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_0912.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_1316.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_1720.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_2124.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_2528.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_2932.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_3336.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_3740.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_4144.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_4548.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_4952.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_5356.png', 2, 2),
+				sprites.stripe('titanic-lr/tlr_5760.png', 2, 2),
 			},
 			width = 750,
 			height = 562,
@@ -105,246 +62,71 @@ data:extend({
 			shift = {10, -7.1},
 			hr_version = {
 				stripes = {
-					{
-						filename = sprite 'titanic-hr/titanic01.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic02.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic03.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic04.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic05.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic06.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic07.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic08.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic09.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic10.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic11.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic12.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic13.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic14.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic15.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic16.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic17.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic18.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic19.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic20.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic21.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic22.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic23.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic24.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic25.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic26.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic27.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic28.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic29.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic30.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic31.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic32.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic33.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic34.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic35.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic36.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic37.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic38.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic39.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic40.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic41.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic42.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic43.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic44.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic45.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic46.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic47.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic48.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic49.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic50.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic51.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic52.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic53.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic54.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic55.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic56.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic57.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic58.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic59.png',
-						width_in_frames = 1, height_in_frames = 1
-					},
-					{
-						filename = sprite 'titanic-hr/titanic60.png',
-						width_in_frames = 1, height_in_frames = 1
-					}
+					sprites.stripe('titanic-hr/titanic01.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic02.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic03.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic04.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic05.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic06.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic07.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic08.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic09.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic10.png', 1, 1),
+
+					sprites.stripe('titanic-hr/titanic11.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic12.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic13.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic14.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic15.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic16.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic17.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic18.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic19.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic20.png', 1, 1),
+
+					sprites.stripe('titanic-hr/titanic21.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic22.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic23.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic24.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic25.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic26.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic27.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic28.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic29.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic30.png', 1, 1),
+
+					sprites.stripe('titanic-hr/titanic31.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic32.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic33.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic34.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic35.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic36.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic37.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic38.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic39.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic40.png', 1, 1),
+
+					sprites.stripe('titanic-hr/titanic41.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic42.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic43.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic44.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic45.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic46.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic47.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic48.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic49.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic50.png', 1, 1),
+
+					sprites.stripe('titanic-hr/titanic51.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic52.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic53.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic54.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic55.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic56.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic57.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic58.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic59.png', 1, 1),
+					sprites.stripe('titanic-hr/titanic60.png', 1, 1),
 				},
 				width = 1500,
 				height = 1125,
@@ -375,7 +157,7 @@ data:extend({
 	{
 		type = "item",
 		name = "texugo-wind-turbine4",
-		icon = sprite "titanicicon.png",
+		icon = sprites.sprite "titanicicon.png",
 		icon_size = 64,
 		group = "logistics",
 		subgroup = "energy",
@@ -386,7 +168,7 @@ data:extend({
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine4',
-		icon = sprite "titanicicon.png",
+		icon = sprites.sprite "titanicicon.png",
 		icon_size = 64,
 		enabled = false,
 		energy = 240,

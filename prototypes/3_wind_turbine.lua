@@ -1,9 +1,11 @@
+local sprites = require('sprites')
+
 data:extend({
 	-- World Entities
 	{
 		type = 'electric-energy-interface',
 		name = 'texugo-wind-turbine3',
-		icon = sprite 'windh_icon.png',
+		icon = sprites.sprite 'windh_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
 		minable = {mining_time = 1, result = 'texugo-wind-turbine3'},
@@ -32,46 +34,14 @@ data:extend({
 		continuous_animation = false,
 		animation = {
 			stripes = {
-				{
-					filename = sprite 'windh1.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh2.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh3.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh4.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh5.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh6.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh7.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				},
-				{
-					filename = sprite 'windh8.png',
-					width_in_frames = 2,
-					height_in_frames = 3
-				}
+				sprites.stripe('windh1.png', 2, 3),
+				sprites.stripe('windh2.png', 2, 3),
+				sprites.stripe('windh3.png', 2, 3),
+				sprites.stripe('windh4.png', 2, 3),
+				sprites.stripe('windh5.png', 2, 3),
+				sprites.stripe('windh6.png', 2, 3),
+				sprites.stripe('windh7.png', 2, 3),
+				sprites.stripe('windh8.png', 2, 3),
 			},
 			width = 800,
 			height = 550,
@@ -101,7 +71,7 @@ data:extend({
 	{
 		type = 'item',
 		name = 'texugo-wind-turbine3',
-		icon = sprite 'windh_icon.png',
+		icon = sprites.sprite 'windh_icon.png',
 		icon_size = 32,
 		group = 'logistics',
 		subgroup = 'energy',
@@ -112,7 +82,7 @@ data:extend({
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine3',
-		icon = sprite 'windh_icon.png',
+		icon = sprites.sprite 'windh_icon.png',
 		icon_size = 32,
 		enabled = false,
 		energy = 60,
@@ -128,7 +98,7 @@ data:extend({
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine3',
-		icon = sprite 'windh_tec.png',
+		icon = sprites.sprite 'windh_tec.png',
 		icon_size = 128,
 		prerequisites = {"electric-engine", "processing-unit", "concrete", "texugo-wind-turbine2"},
 		effects = {

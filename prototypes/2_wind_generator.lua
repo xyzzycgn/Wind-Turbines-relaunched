@@ -1,9 +1,11 @@
+local sprites = require('sprites')
+
 data:extend({
 	-- World Entities
 	{
 		type = 'electric-energy-interface',
 		name = 'texugo-wind-turbine2',
-		icon = sprite 'winds_icon.png',
+		icon = sprites.sprite 'winds_icon.png',
 		icon_size = 32,
 		flags = {"player-creation","placeable-neutral", "not-rotatable"},
 		minable = {mining_time = 0.3, result = 'texugo-wind-turbine2'},
@@ -33,26 +35,10 @@ data:extend({
 		continuous_animation = false,
 		animation = {
 			stripes = {
-				{
-					filename = sprite 'winds1.png',
-					width_in_frames = 3,
-					height_in_frames = 4
-				},
-				{
-					filename = sprite 'winds2.png',
-					width_in_frames = 3,
-					height_in_frames = 4
-				},
-				{
-					filename = sprite 'winds3.png',
-					width_in_frames = 3,
-					height_in_frames = 4
-				},
-				{
-					filename = sprite 'winds4.png',
-					width_in_frames = 3,
-					height_in_frames = 4
-				}
+				sprites.stripe('winds1.png', 3, 4),
+				sprites.stripe('winds2.png', 3, 4),
+				sprites.stripe('winds3.png', 3, 4),
+				sprites.stripe('winds4.png', 3, 4),
 			},
 			width = 650,
 			height = 500,
@@ -82,7 +68,7 @@ data:extend({
 	{
 		type = 'item',
 		name = 'texugo-wind-turbine2',
-		icon = sprite 'winds_icon.png',
+		icon = sprites.sprite 'winds_icon.png',
 		icon_size = 32,
 		group = 'logistics',
 		subgroup = 'energy',
@@ -93,7 +79,7 @@ data:extend({
 	{
 		type = 'recipe',
 		name = 'texugo-wind-turbine2',
-		icon = sprite 'winds_icon.png',
+		icon = sprites.sprite 'winds_icon.png',
 		icon_size = 32,
 		enabled = false,
 		energy = 15,
@@ -108,7 +94,7 @@ data:extend({
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine2',
-		icon = sprite 'winds_tec.png',
+		icon = sprites.sprite 'winds_tec.png',
 		icon_size = 128,
 		prerequisites = {"electric-energy-distribution-1", "advanced-circuit", "stone-wall"},
 		effects = {

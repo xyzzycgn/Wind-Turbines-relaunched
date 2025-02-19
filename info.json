@@ -1,11 +1,11 @@
 {
-	"name": "Wind_Generator-gfxrestyle",
+	"name": "Wind-Turbines-relaunched",
+	"title": "Wind Turbines (relaunched) ",
+	"description": "Wind turbines produce free energy, but are expensive to build and don't have a steady output.\nThis mod adds 4 tiers of turbines, from a small wooden windmill to a titanic steel and refined concrete turbine.",
+	"author": "xyzzycgn; wavetrex ;SF ;WipMod; Texugo",
 	"version": "2.0.0",
 	"factorio_version": "2.0",
-	"title": "Wind Turbines",
-	"author": "wavetrex ;SF ;WipMod; Texugo",
 	"homepage": "",
-	"description": "Wind Turbines produce free energy, but are expensive to build and don't have a steady output.\nThis mod adds 4 tiers of Turbines, from a small wooden Windmill to a Titanic steel and refined concrete turbine.",
 	"dependencies": [
 		"? bobelectronics"
 	]

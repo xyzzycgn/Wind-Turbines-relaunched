@@ -174,8 +174,8 @@ data:extend({
 		energy = 240,
 		ingredients = {
 			{ type = "item", name = 'low-density-structure',   amount = 400},
-			{ type = "item", name = 'processing-unit',         amount = 50},
-			{ type = "item", name = 'speed-module',            amount = 50},
+			{ type = "item", name = 'processing-unit',         amount = 70},
+			{ type = "item", name = 'speed-module',            amount = 70},
 			{ type = "item", name = 'heat-pipe',        	   amount = 50},
 			{ type = "item", name = 'steam-turbine',    	   amount = 10},
 			{ type = "item", name = 'steel-plate',      	   amount = 2000},

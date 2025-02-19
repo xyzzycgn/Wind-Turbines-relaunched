@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 2025-02-20
+  Features:
+    - ported to V 2.0 of game
+    - compatible with both base game and space age extension
+  Info:
+    - due to the withdrawal of rocket-control-unit titanic turbine now uses the former ingredients of it
+---------------------------------------------------------------------------------------------------
 Version: 1.2.3
 Date: 2022-07-10
   Bugfixes:

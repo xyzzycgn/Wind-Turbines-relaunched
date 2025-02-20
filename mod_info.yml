@@ -4,5 +4,6 @@ mod_info:
   title: Wind Turbines relaunched
   attach_source_link: true
   license: mit
+  category: content
   tags:
     - power

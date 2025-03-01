@@ -1,4 +1,5 @@
 local sprites = require('sprites')
+local surface_conditions = require('surface_conditions')
 
 data:extend({
 	-- Item, Recipe and Tech
@@ -75,7 +76,11 @@ data:extend({
 			shift = {2, -1.2},
 			animation_speed = 0.005
 		},
-		min_perceived_performance = 1.0
+		min_perceived_performance = 1.0,
+		surface_conditions = {
+			surface_conditions.pressure(),
+			surface_conditions.surface_condition("gravity", 10, 30)
+		}
 	},
 	{
 		type = 'simple-entity-with-owner',

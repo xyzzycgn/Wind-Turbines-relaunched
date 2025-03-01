@@ -1,4 +1,5 @@
 local sprites = require('sprites')
+local surface_conditions = require('surface_conditions')
 
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if settings.startup["texugo-wind-turbine4"].value then
@@ -136,7 +137,10 @@ data:extend({
 				shift = {10, -7.1}
 			}
         },
-        min_perceived_performance = 1
+        min_perceived_performance = 1,
+		surface_conditions = {
+			surface_conditions.pressure(),
+		}
     },
     {
 		type = 'simple-entity-with-owner',

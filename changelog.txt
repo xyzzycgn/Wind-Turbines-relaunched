@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.2
+Date: 2025-03-01
+  Bugfixes:
+    - Fixed inconsistency with space age extension (turbines could be build on space platforms, but in space there is
+      no wind 😉).
+      Now turbines can only be build on planets, with the exception of aquilo (pressure too low) and wooden mills are
+      not possible on vulcanus.
+---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 2025-02-25
   Locale:

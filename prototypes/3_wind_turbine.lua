@@ -1,4 +1,5 @@
 local sprites = require('sprites')
+local surface_conditions = require('surface_conditions')
 
 data:extend({
 	-- World Entities
@@ -51,7 +52,10 @@ data:extend({
 			animation_speed = 0.000015,
 			priority = "low"
 		},
-		min_perceived_performance = 1.0
+		min_perceived_performance = 1.0,
+		surface_conditions = {
+			surface_conditions.pressure(),
+		}
 	},
 	{
 		type = 'simple-entity-with-owner',

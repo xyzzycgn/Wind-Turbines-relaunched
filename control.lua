@@ -64,9 +64,7 @@ script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_e
 end)
 
 script.on_event(defines.events.on_object_destroyed, function(event)
-	log(serpent.block(event))
 	local entity = storage.wind_turbines[event.registration_number]
-	log(serpent.block(entity))
 	if entity and turbine_map[entity[2]] then
 		for _, collision_rect in pairs(entity[4].find_entities_filtered{position = entity[3], name = turbine_map[entity[2]]}) do
 			collision_rect.destroy()

@@ -31,6 +31,16 @@ data:extend({
 	},
 })
 
+local function insert_surface_conditions()
+    local sc = {
+        surface_conditions.pressure(),
+        surface_conditions.surface_condition("gravity", 10, 30)
+    }
+
+    return sc
+end
+
+
 data:extend({
 	-- World Entities
 	{
@@ -77,10 +87,7 @@ data:extend({
 			animation_speed = 0.005
 		},
 		min_perceived_performance = 1.0,
-		surface_conditions = {
-			surface_conditions.pressure(),
-			surface_conditions.surface_condition("gravity", 10, 30)
-		}
+		surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
 	},
 	{
 		type = 'simple-entity-with-owner',

@@ -3,6 +3,15 @@ local surface_conditions = require('surface_conditions')
 
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if settings.startup["texugo-wind-turbine4"].value then
+
+local function insert_surface_conditions()
+    local sc = {
+        surface_conditions.pressure(),
+    }
+
+    return sc
+end
+
 data:extend({
 	-- World Entities
     {
@@ -138,9 +147,7 @@ data:extend({
 			}
         },
         min_perceived_performance = 1,
-		surface_conditions = {
-			surface_conditions.pressure(),
-		}
+		surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
     },
     {
 		type = 'simple-entity-with-owner',

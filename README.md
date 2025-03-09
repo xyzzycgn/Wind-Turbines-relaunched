@@ -1,7 +1,7 @@
 # Wind Turbines relaunched
 ## Features
 Wind Turbines produce free energy, but are expensive to build and don't have a steady output.
-This mod adds 4 tiers of turbines, from a small wooden windmill to a titanic steel and refined concrete turbine.
+This mod adds 4 tiers of turbines, from a small wooden windmill to a giant steel and refined concrete turbine.
 
 ![wind turbines](https://github.com/xyzzycgn/Wind-Turbines-relaunched/blob/main/turbines.jpg?raw=true)
 - Alternative/complement to solar panel arrays, similar large upfront cost but free energy after
@@ -10,6 +10,7 @@ This mod adds 4 tiers of turbines, from a small wooden windmill to a titanic ste
 
 ## Supported locales
 As of version 2.0.1 several locales are supported. Currently these are:
+- čeština (cs)
 - deutsch (de)
 - english (en) - default
 - español (es-ES)

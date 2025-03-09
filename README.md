@@ -14,8 +14,12 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - english (en) - default
 - español (es-ES)
 - français (fr)
+- italiano (it)
 - 日本語 (ja)
+- nederlands (nl)
 - português (pt-BR)
+- русский (ru)
+- українська (uk-UA)
 
 ----
 ## Relaunch of Wind Turbines from wavtrex with the necessary patches for V 2.0 of factorio.

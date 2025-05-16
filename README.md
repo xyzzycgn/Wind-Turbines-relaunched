@@ -12,6 +12,7 @@ This mod adds 4 tiers of turbines, from a small wooden windmill to a giant steel
 As of version 2.0.1 several locales are supported. Currently these are:
 - čeština (cs)
 - deutsch (de)
+- ελληνικά (el)
 - english (en) - default
 - español (es-ES)
 - suomi (fi)
@@ -19,12 +20,14 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - italiano (it)
 - 日本語 (ja)
 - 한국인 (ko)
+- magyar (hu)
 - nederlands (nl)
 - norsk (no)
 - polski (pl)
 - português (pt-BR)
 - русский (ru)
 - svenska (sv-SE)
+- türkçe (tr)
 - українська (uk-UA)
 - 中国人 (zh-CN)
 - 中國人 (zh-TW)

@@ -32,6 +32,9 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - 中国人 (zh-CN)
 - 中國人 (zh-TW)
 
+## Contributors
+- Onseshigo: adjustments in locale ru
+
 ----
 ## Relaunch of Wind Turbines from wavtrex with the necessary patches for V 2.0 of factorio.
 This mod is intended as inplace replacement for [Wind_Generator-gfxrestyle](https://mods.factorio.com/mod/Wind_Generator-gfxrestyle) 

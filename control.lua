@@ -16,6 +16,14 @@ local output_modifiers = {
 	['texugo-wind-turbine4'] = 1000,
 }
 
+local quality_factor = {
+	[0] = 1,
+	[1] = 1.3,
+	[2] = 1.6,
+	[3] = 1.9,
+	[4] = 2.5
+}
+
 script.on_nth_tick(120, function(event)
 	storage.wind = storage.wind + 0.02
 	local x = storage.wind
@@ -23,8 +31,20 @@ script.on_nth_tick(120, function(event)
 	(math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655
 
 	for _, wind_turbine in pairs(storage.wind_turbines) do
-		if wind_turbine[1].valid and wind_turbine[1].type == 'electric-energy-interface' then
-			wind_turbine[1].power_production = y * 67500/60 * powersetting * output_modifiers[wind_turbine[2]]
+		local wt1 = wind_turbine[1]
+		local wt2 = wind_turbine[2]
+
+		if wt1.valid and wt1.type == 'electric-energy-interface' then
+			local ql = wt1.quality.level
+			local qf
+			-- if somebody uses a mod with additional quality levels
+			if ql > 4 then
+				qf = quality_factor[4] + 0.2 + (ql - 4) / ql
+			else
+				qf = quality_factor[ql]
+			end
+
+			wt1.power_production = y * 67500/60 * powersetting * output_modifiers[wt2] * qf
 		end
 	end
 end)

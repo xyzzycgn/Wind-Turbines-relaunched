@@ -32,6 +32,10 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - 中国人 (zh-CN)
 - 中國人 (zh-TW)
 
+## Quality
+Quality (introduced by SPA) is supported. The different quality tiers offer increased health and energy output. 
+Increase of energy output is analogous to that of a solar panel.
+
 ## Contributors
 - Onseshigo: adjustments in locale ru
 

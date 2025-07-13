@@ -12,5 +12,11 @@ data:extend{
 		name = 'texugo-wind-turbine4',
 		setting_type = 'startup',
 		default_value = true
+	},
+	{
+		type = 'bool-setting',
+		name = 'texugo-wind-use-surface-wind-speed',
+		setting_type = 'startup',
+		default_value = true
 	}
 }

@@ -9,6 +9,8 @@ script.on_nth_tick(6000, function(event)
 end)
 
 local powersetting = settings.startup['texugo-wind-power'].value
+local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
+
 local output_modifiers = {
 	['texugo-wind-turbine'] = 1,
 	['texugo-wind-turbine2'] = 10,
@@ -24,11 +26,16 @@ local quality_factor = {
 	[4] = 2.5
 }
 
+local alpha = 0.2  -- smoothing factor
+
 script.on_nth_tick(120, function(event)
 	storage.wind = storage.wind + 0.02
 	local x = storage.wind
-	local y = ((math.sin(3*x/2)/3)+(math.sin(2*x/2+2)/3)+(math.sin(3*x/2-3)/2)-(math.sin(4*x/2+1)/3)-
-	(math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655
+	-- legacy function
+	local y = not use_surface_wind_speed and ((math.sin(3*x/2)/3)+(math.sin(2*x/2+2)/3)+(math.sin(3*x/2-3)/2)-(math.sin(4*x/2+1)/3)-
+	(math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655 or 0
+
+	local ks = {}
 
 	for _, wind_turbine in pairs(storage.wind_turbines) do
 		local wt1 = wind_turbine[1]
@@ -44,6 +51,27 @@ script.on_nth_tick(120, function(event)
 				qf = quality_factor[ql]
 			end
 
+			if use_surface_wind_speed then
+				local surface = wind_turbine[4]
+    			local surface_index = surface.index
+
+				-- init for a never used before surface
+				if not storage.surface_orientations[surface_index] then
+					storage.surface_orientations[surface_index] = surface.wind_orientation
+				end
+
+				-- surface already used in this round?
+				if ks[surface_index] then
+					y = ks[surface_index]
+				else
+					-- The raw value can jump between 0 and 1 (or vice versa), so smooth it
+					local current_orientation = surface.wind_orientation -- wind_speed seems to be constant 0.2
+					y = alpha * current_orientation + (1 - alpha) * storage.surface_orientations[surface_index]
+					ks[surface_index] = y
+					storage.surface_orientations[surface_index] = y
+				end
+			end
+
 			wt1.power_production = y * 67500/60 * powersetting * output_modifiers[wt2] * qf
 		end
 	end
@@ -52,6 +80,7 @@ end)
 local function create_vars()
 	storage.wind = storage.wind or 0
 	storage.wind_turbines = storage.wind_turbines or {}
+    storage.surface_orientations = storage.surface_orientations or {}
 end
 
 script.on_init(create_vars)

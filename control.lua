@@ -9,6 +9,7 @@ script.on_nth_tick(6000, function(event)
 end)
 
 local powersetting = settings.startup['texugo-wind-power'].value
+
 local output_modifiers = {
 	['texugo-wind-turbine'] = 1,
 	['texugo-wind-turbine2'] = 10,
@@ -22,6 +23,21 @@ local quality_factor = {
 	[2] = 1.6,
 	[3] = 1.9,
 	[4] = 2.5
+}
+
+-- collision rectangles
+local turbine_map = {
+	['texugo-wind-turbine'] = 'twt-collision-rect',
+	['texugo-wind-turbine2'] = 'twt-collision-rect2',
+	['texugo-wind-turbine3'] = 'twt-collision-rect3',
+	['texugo-wind-turbine4'] = 'twt-collision-rect4',
+}
+
+local reverse_map = {
+	['twt-collision-rect'] = 'texugo-wind-turbine',
+	['twt-collision-rect2'] = 'texugo-wind-turbine2',
+	['twt-collision-rect3'] = 'texugo-wind-turbine3',
+	['twt-collision-rect4'] = 'texugo-wind-turbine4',
 }
 
 script.on_nth_tick(120, function(event)
@@ -49,6 +65,7 @@ script.on_nth_tick(120, function(event)
 	end
 end)
 
+--- called from on_init and on_configuration_changed
 local function create_vars()
 	storage.wind = storage.wind or 0
 	storage.wind_turbines = storage.wind_turbines or {}
@@ -56,21 +73,6 @@ end
 
 script.on_init(create_vars)
 script.on_configuration_changed(create_vars)
-
--- collision rectangles
-local turbine_map = {
-	['texugo-wind-turbine'] = 'twt-collision-rect',
-	['texugo-wind-turbine2'] = 'twt-collision-rect2',
-	['texugo-wind-turbine3'] = 'twt-collision-rect3',
-	['texugo-wind-turbine4'] = 'twt-collision-rect4',
-}
-
-local reverse_map = {
-	['twt-collision-rect'] = 'texugo-wind-turbine',
-	['twt-collision-rect2'] = 'texugo-wind-turbine2',
-	['twt-collision-rect3'] = 'texugo-wind-turbine3',
-	['twt-collision-rect4'] = 'texugo-wind-turbine4',
-}
 
 script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity, defines.events.script_raised_revive}, function(event)
 	local entity = event.created_entity or event.entity

@@ -1,6 +1,8 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
 
+local extended_collision_area = settings.startup['texugo-extended-collision-area'].value
+
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if settings.startup["texugo-wind-turbine4"].value then
 
@@ -13,6 +15,59 @@ local function insert_surface_conditions()
 end
 
 data:extend({
+	-- Item, Recipe and Tech
+	{
+		type = "item",
+		name = "texugo-wind-turbine4",
+		icon = sprites.sprite "titanicicon.png",
+		icon_size = 64,
+		group = "logistics",
+		subgroup = "energy",
+		order = "b[steam-power]-c[texugo-wind-turbine]",
+		place_result = "texugo-wind-turbine4",
+		stack_size = 1
+	},
+	{
+		type = 'recipe',
+		name = 'texugo-wind-turbine4',
+		icon = sprites.sprite "titanicicon.png",
+		icon_size = 64,
+		enabled = false,
+		energy = 240,
+		ingredients = {
+			{ type = "item", name = 'low-density-structure',   amount = 400},
+			{ type = "item", name = 'processing-unit',         amount = 70},
+			{ type = "item", name = 'speed-module',            amount = 70},
+			{ type = "item", name = 'heat-pipe',        	   amount = 50},
+			{ type = "item", name = 'steam-turbine',    	   amount = 10},
+			{ type = "item", name = 'steel-plate',      	   amount = 2000},
+			{ type = "item", name = 'refined-concrete', 	   amount = 1000}
+		},
+		results = {{ type = "item", name = 'texugo-wind-turbine4', amount = 1 }},
+	},
+	{
+		type = "technology",
+		name = "texugo-wind-turbine4",
+		icon = sprites.sprite "titanictech.png",
+		icon_size = 128,
+		prerequisites = { "nuclear-power", "texugo-wind-turbine3"},
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "texugo-wind-turbine4"
+			}
+		},
+		unit = {
+			count = 2000,
+			ingredients = {
+				{"automation-science-pack", 1},
+				{"logistic-science-pack", 1},
+				{"chemical-science-pack", 1},
+				{"utility-science-pack", 1}
+			},
+			time = 120
+		}
+	},
 	-- World Entities
     {
         type = 'electric-energy-interface',
@@ -32,8 +87,8 @@ data:extend({
 		},
         fast_replaceable_group = 'texugo-wind-turbine4',
         collision_mask = { layers = { item = true, object = true, water_tile = true } },
-        collision_box = {{-5.9, -13.9}, {5.9, 3.9}},
-        selection_box = {{-6, -14}, {6, 4}},
+        collision_box = extended_collision_area and {{ -5.9, -13.9 }, { 5.9, 3.9 }} or {{ -5.9, -3.9 }, { 5.9, 3.9 }} ,
+        selection_box = extended_collision_area and {{   -6,   -14 }, {   6,   4 }} or {{   -6,   -4 }, {   6,   4 }} ,
 
 		energy_source = {
 			type = 'electric',
@@ -149,7 +204,7 @@ data:extend({
         min_perceived_performance = 1,
 		surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
     },
-    {
+	{
 		type = 'simple-entity-with-owner',
 		name = 'twt-collision-rect4',
 		flags = {'not-deconstructable', 'not-on-map', 'placeable-off-grid', 'not-repairable', 'not-blueprintable'},
@@ -159,62 +214,9 @@ data:extend({
 			filename = "__core__/graphics/empty.png",
 			size = 1
 		},
-        max_health = 5000,
+		max_health = 5000,
 		resistances = {
 			{type = 'impact', percent = 60, decrease = 30}
-		}
-	},
-	-- Item, Recipe and Tech
-	{
-		type = "item",
-		name = "texugo-wind-turbine4",
-		icon = sprites.sprite "titanicicon.png",
-		icon_size = 64,
-		group = "logistics",
-		subgroup = "energy",
-		order = "b[steam-power]-c[texugo-wind-turbine]",
-		place_result = "texugo-wind-turbine4",
-		stack_size = 1
-	},
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine4',
-		icon = sprites.sprite "titanicicon.png",
-		icon_size = 64,
-		enabled = false,
-		energy = 240,
-		ingredients = {
-			{ type = "item", name = 'low-density-structure',   amount = 400},
-			{ type = "item", name = 'processing-unit',         amount = 70},
-			{ type = "item", name = 'speed-module',            amount = 70},
-			{ type = "item", name = 'heat-pipe',        	   amount = 50},
-			{ type = "item", name = 'steam-turbine',    	   amount = 10},
-			{ type = "item", name = 'steel-plate',      	   amount = 2000},
-			{ type = "item", name = 'refined-concrete', 	   amount = 1000}
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine4', amount = 1 }},
-	},
-	{
-		type = "technology",
-		name = "texugo-wind-turbine4",
-		icon = sprites.sprite "titanictech.png",
-		icon_size = 128,
-		prerequisites = { "nuclear-power", "texugo-wind-turbine3"},
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "texugo-wind-turbine4"
-			}
-		},
-		unit = {
-			count = 2000,
-			ingredients = {
-				{"automation-science-pack", 1},
-				{"logistic-science-pack", 1},
-				{"chemical-science-pack", 1},
-				{"utility-science-pack", 1}
-			},
-			time = 120
 		}
 	}
 })

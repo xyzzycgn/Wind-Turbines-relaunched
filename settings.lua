@@ -21,5 +21,12 @@ data:extend{
 		setting_type = 'startup',
 		default_value = true,
 		order = 'c',
-	}
+	},
+	{
+		type = 'bool-setting',
+		name = 'texugo-extended-collision-area',
+		setting_type = 'startup',
+		default_value = false,
+		order = 'd',
+	},
 }

@@ -1,6 +1,17 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
 
+local extended_collision_area = settings.startup['texugo-extended-collision-area'].value
+
+local function insert_surface_conditions()
+	local sc = {
+		surface_conditions.pressure(),
+		surface_conditions.surface_condition("gravity", 10, 30)
+	}
+
+	return sc
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -29,19 +40,6 @@ data:extend({
 		},
 		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
 	},
-})
-
-local function insert_surface_conditions()
-    local sc = {
-        surface_conditions.pressure(),
-        surface_conditions.surface_condition("gravity", 10, 30)
-    }
-
-    return sc
-end
-
-
-data:extend({
 	-- World Entities
 	{
 		type = 'electric-energy-interface',
@@ -59,8 +57,8 @@ data:extend({
 		},
 		fast_replaceable_group = 'texugo-wind-turbine',
 		collision_mask = { layers = { item = true, object = true, water_tile = true } },
-		collision_box = {{-1.4, -2.9}, {1.4, 0.9}},
-		selection_box = {{-1.5, -3}, {1.5, 1}},
+		collision_box = extended_collision_area and {{ -1.4, -2.9 }, { 1.4, 0.9 }} or {{ -1.4, -0.9 }, { 1.4, 0.9 }},
+		selection_box = extended_collision_area and {{ -1.5, -3 },   { 1.5, 1   }} or {{ -1.5, -1 },   { 1.5, 1 }},
 
 		energy_source = {
 			type = 'electric',
@@ -103,5 +101,5 @@ data:extend({
 		resistances = {
 			{type = 'impact', percent = 15}
 		}
-	},
+	}
 })

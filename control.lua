@@ -72,19 +72,20 @@ script.on_nth_tick(120, function(event)
                 local surface_index = surface.index
 
                 -- init for a never used before surface
-                if not storage.surface_orientations[surface_index] then
-                    storage.surface_orientations[surface_index] = surface.wind_orientation
+                if not storage.wind_speed_on_surface[surface_index] then
+                    storage.wind_speed_on_surface[surface_index] = surface.wind_orientation
                 end
 
                 -- surface already used in this round?
                 if ks[surface_index] then
                     y = ks[surface_index]
                 else
+                    -- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
+                    local current = surface.wind_orientation
                     -- The raw value can jump between 0 and 1 (or vice versa), so smooth it
-                    local current_orientation = surface.wind_orientation -- wind_speed seems to be constant 0.2
-                    y = alpha * current_orientation + (1 - alpha) * storage.surface_orientations[surface_index]
+                    y = alpha * current + (1 - alpha) * storage.wind_speed_on_surface[surface_index]
                     ks[surface_index] = y
-                    storage.surface_orientations[surface_index] = y
+                    storage.wind_speed_on_surface[surface_index] = y
                 end
             end
 
@@ -96,7 +97,6 @@ end)
 
 --- check after switching use_extended_collision_area on
 local function check_collisions()
-    log("check_collisions")
     for _, wind_turbine in pairs(storage.wind_turbines) do
         local entity = wind_turbine[1]
         local name = wind_turbine[2]
@@ -132,7 +132,6 @@ end
 
 --- check after switching use_extended_collision_area off
 local function check_connectivity()
-    log("##### check_connectivity")
     for _, wind_turbine in pairs(storage.wind_turbines) do
         local entity = wind_turbine[1]
         local name = wind_turbine[2]
@@ -158,9 +157,7 @@ end
 local function create_vars()
     storage.wind = storage.wind or 0
     storage.wind_turbines = storage.wind_turbines or {}
-    storage.surface_orientations = storage.surface_orientations or {}
-
-    log(serpent.line({ old = storage.old_extended_collision_area, new = use_extended_collision_area }))
+    storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
 
     if storage.old_extended_collision_area == nil then
         log("no old_extended_collision_area present")
@@ -168,10 +165,9 @@ local function create_vars()
         storage.old_extended_collision_area = true
     end
 
-
     if use_extended_collision_area ~= storage.old_extended_collision_area then
         log("use_extended_collision_area has changed")
-        -- check existing wind wind_turbines
+        -- check existing wind turbines
         if use_extended_collision_area then
             check_collisions()
         else
@@ -203,7 +199,6 @@ script.on_event(defines.events.on_object_destroyed, function(event)
             collision_rect.destroy()
         end
     end
-    --	table.remove(storage.wind_turbines, event.registration_number)
     storage.wind_turbines[event.registration_number] = nil
 end)
 

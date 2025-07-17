@@ -10,6 +10,7 @@ end)
 
 local powersetting = settings.startup['texugo-wind-power'].value
 local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
+local use_extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
 
 local output_modifiers = {
     ['texugo-wind-turbine'] = 1,
@@ -91,12 +92,77 @@ script.on_nth_tick(120, function(event)
         end
     end
 end)
+-- ###############################################################
+
+--- check after switching use_extended_collision_area on
+local function check_collisions()
+    log("check_collisions")
+    for _, wind_turbine in pairs(storage.wind_turbines) do
+        local entity = wind_turbine[1]
+        local name = wind_turbine[2]
+        local position= wind_turbine[3]
+        local surface = wind_turbine[4]
+        local cb = entity.prototype.collision_box
+        local cm = entity.prototype.collision_mask.layers
+        local area = {{ position.x + cb.left_top.x, position.y + cb.left_top.y },
+                      { position.x + cb.right_bottom.x, position.y + cb.right_bottom.y }}
+
+        -- ignore ore, ...
+        local inside = surface.find_entities_filtered( { area = area, collision_mask = cm })
+
+        if table_size(inside) > 2 then
+            -- if colliding, spill it at the former position
+            local quality = entity.quality.name
+            local force = entity.force
+            -- create alert
+            for _, player in pairs(force.players) do
+                player.add_custom_alert(entity,
+                                        { type = 'entity', name = name, quality = quality, },
+                                        { "alerts.texugo-wind-extended-collision-area" },
+                                        true)
+            end
+
+            entity.destroy()
+            surface.spill_item_stack({ position = position,
+                                       stack = { name = name, count = 1, quality = quality },
+                                       max_radius = 1, })
+        end
+    end
+end
+
+--- check after switching use_extended_collision_area off
+local function check_connectivity()
+    log("##### check_connectivity")
+
+end
+
 
 --- called from on_init and on_configuration_changed
 local function create_vars()
     storage.wind = storage.wind or 0
     storage.wind_turbines = storage.wind_turbines or {}
     storage.surface_orientations = storage.surface_orientations or {}
+
+    log(serpent.line({ old = storage.old_extended_collision_area, new = use_extended_collision_area }))
+
+    if storage.old_extended_collision_area == nil then
+        log("no old_extended_collision_area present")
+        --- in prior versions all turbine had an extended collision_area
+        storage.old_extended_collision_area = true
+    end
+
+
+    if use_extended_collision_area ~= storage.old_extended_collision_area then
+        log("use_extended_collision_area has changed")
+        -- check existing wind wind_turbines
+        if use_extended_collision_area then
+            check_collisions()
+        else
+            check_connectivity()
+        end
+
+        storage.old_extended_collision_area = use_extended_collision_area
+    end
 end
 
 script.on_init(create_vars)

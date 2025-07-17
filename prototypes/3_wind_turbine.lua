@@ -1,7 +1,7 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
 
-local extended_collision_area = settings.startup['texugo-extended-collision-area'].value
+local extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
 
 local function insert_surface_conditions()
     local sc = {

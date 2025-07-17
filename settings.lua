@@ -24,7 +24,7 @@ data:extend{
 	},
 	{
 		type = 'bool-setting',
-		name = 'texugo-extended-collision-area',
+		name = 'texugo-wind-extended-collision-area',
 		setting_type = 'startup',
 		default_value = false,
 		order = 'd',

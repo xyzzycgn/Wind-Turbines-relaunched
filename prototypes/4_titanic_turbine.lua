@@ -1,7 +1,7 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
 
-local extended_collision_area = settings.startup['texugo-extended-collision-area'].value
+local extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
 
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if settings.startup["texugo-wind-turbine4"].value then

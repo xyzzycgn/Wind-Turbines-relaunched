@@ -133,7 +133,24 @@ end
 --- check after switching use_extended_collision_area off
 local function check_connectivity()
     log("##### check_connectivity")
+    for _, wind_turbine in pairs(storage.wind_turbines) do
+        local entity = wind_turbine[1]
+        local name = wind_turbine[2]
+        local position= wind_turbine[3]
+        local surface = wind_turbine[4]
 
+        if not (entity.is_connected_to_electric_network() or surface.has_global_electric_network) then
+            local quality = entity.quality.name
+            local force = entity.force
+            -- create alert
+            for _, player in pairs(force.players) do
+                player.add_custom_alert(entity,
+                                        { type = 'entity', name = name, quality = quality, },
+                                        { "alerts.texugo-wind-not-connected" },
+                                        true)
+            end
+        end
+    end
 end
 
 
@@ -147,7 +164,7 @@ local function create_vars()
 
     if storage.old_extended_collision_area == nil then
         log("no old_extended_collision_area present")
-        --- in prior versions all turbine had an extended collision_area
+        --- in prior versions all turbine always had an extended collision_area
         storage.old_extended_collision_area = true
     end
 

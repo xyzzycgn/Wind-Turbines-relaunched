@@ -1,9 +1,9 @@
 {
 	"name": "Wind-Turbines-relaunched",
 	"title": "Wind Turbines (relaunched) ",
-	"description": "Wind turbines produce free energy, but are expensive to build and don't have a steady output.\nThis mod adds 4 tiers of turbines, from a small wooden windmill to a titanic steel and refined concrete turbine.",
+	"description": "Wind turbines produce free energy, but are more expensive to build and don't have a steady output.\nThis mod adds 4 tiers of turbines, from a small wooden windmill to a titanic steel and refined concrete turbine.",
 	"author": "xyzzycgn; wavetrex ;SF ;WipMod; Texugo",
-	"version": "2.0.9",
+	"version": "2.1.0",
 	"factorio_version": "2.0",
 	"homepage": "",
 	"dependencies": [

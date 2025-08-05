@@ -20,7 +20,14 @@ data:extend{
 		name = 'texugo-wind-use-surface-wind-speed',
 		setting_type = 'startup',
 		default_value = true,
-		order = 'c',
+		order = 'ca',
+	},
+	{
+		type = 'bool-setting',
+		name = 'texugo-wind-scale-with-pressure',
+		setting_type = 'startup',
+		default_value = true,
+		order = 'cb',
 	},
 	{
 		type = 'bool-setting',

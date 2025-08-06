@@ -170,6 +170,19 @@ local function check_connectivity()
 end
 -- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+local function updatePressures()
+    local pressures = {}
+    for k, v in pairs(prototypes.space_location) do
+        if v.type == "planet" then
+            pressures[k] = v.surface_properties and v.surface_properties.pressure or 1000 -- if no pressure set, assume default (from nauvis)
+        end
+    end
+
+    log(serpent.block(pressures))
+    storage.pressures =  pressures
+end
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 --- called from on_init and on_configuration_changed
 local function create_vars()
     storage.wind = storage.wind or 0
@@ -194,12 +207,13 @@ local function create_vars()
         storage.old_extended_collision_area = use_extended_collision_area
     end
 
-    game.print({ "alerts.texugo-wind-mode-set", { "string-mod-setting.texugo-wind-mode-" .. handle_settings.windMode() } })
+    updatePressures()
 end
 -- ###############################################################
 
 script.on_init(create_vars)
 script.on_configuration_changed(create_vars)
+script.on_event({ defines.events.on_surface_created, defines.events.on_surface_deleted }, updatePressures)
 
 script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity, defines.events.script_raised_revive}, function(event)
     local entity = event.created_entity or event.entity

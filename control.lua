@@ -2,16 +2,18 @@
 -- https://www.geogebra.org/m/GDgua6HK
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
+local handle_settings = require("handle_settings")
+
 script.on_nth_tick(6000, function(event)
     if storage.wind >= 1800 then
         storage.wind = 0
     end
 end)
 
-local powersetting = settings.startup['texugo-wind-power'].value
-local use_extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
-local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
-local wind_scale_with_pressure = settings.startup['texugo-wind-scale-with-pressure'].value
+local powersetting = handle_settings.WindPower()
+local use_extended_collision_area = handle_settings.useExtendedCollisionArea()
+local use_surface_wind_speed = handle_settings.useSurfaceWindSpeed()
+local wind_scale_with_pressure = handle_settings.scaleWithPressure()
 
 local output_modifiers = {
     ['texugo-wind-turbine'] = 1,
@@ -168,23 +170,6 @@ local function check_connectivity()
 end
 -- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-local function checkPressure()
-    local pressures = {}
-    for k, v in pairs(prototypes.space_location) do
-        if v.type == "planet" then
-            local planet =  {
-                name = k,
-                surface_properties = v.surface_properties,
-                hidden = v.hidden,
-            }
-
-            pressures[k] = v.surface_properties and v.surface_properties.pressure or 1000 -- if no pressure set, assume default (from nauvis)
-        end
-    end
-    return pressures
-end
--- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 --- called from on_init and on_configuration_changed
 local function create_vars()
     storage.wind = storage.wind or 0
@@ -209,7 +194,7 @@ local function create_vars()
         storage.old_extended_collision_area = use_extended_collision_area
     end
 
-    storage.pressures = checkPressure()
+    game.print({ "alerts.texugo-wind-mode-set", { "string-mod-setting.texugo-wind-mode-" .. handle_settings.windMode() } })
 end
 -- ###############################################################
 

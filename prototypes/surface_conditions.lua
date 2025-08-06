@@ -22,14 +22,4 @@ function surface_conditions.check_existence_of_SPA(func)
     return nil
 end
 
-local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
-local wind_scale_with_pressure = settings.startup['texugo-wind-scale-with-pressure'].value
-local use_quality = mods["space-age"]
-
---- combined scaling factor of max increase by quality and/or pressure
-function surface_conditions.scaleWithQualityAndPressure()
-    local scale = use_surface_wind_speed and wind_scale_with_pressure and 20 or 1
-    return use_quality and (scale * 3.5) or scale
-end
-
 return surface_conditions

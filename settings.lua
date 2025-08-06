@@ -16,18 +16,16 @@ data:extend{
 		order = 'b',
 	},
 	{
-		type = 'bool-setting',
-		name = 'texugo-wind-use-surface-wind-speed',
-		setting_type = 'startup',
-		default_value = true,
-		order = 'ca',
-	},
-	{
-		type = 'bool-setting',
-		name = 'texugo-wind-scale-with-pressure',
-		setting_type = 'startup',
-		default_value = true,
-		order = 'cb',
+		type = "string-setting",
+		name = "texugo-wind-mode",
+		order = "c",
+		setting_type = "startup",
+		default_value = "SURFACE+PRESSURE",
+		allowed_values = {
+			"CLASSICAL",
+			"SURFACE",
+			"SURFACE+PRESSURE",
+		}
 	},
 	{
 		type = 'bool-setting',

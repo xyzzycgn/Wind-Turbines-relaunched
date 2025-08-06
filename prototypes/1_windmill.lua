@@ -1,7 +1,6 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
-
-local extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
+local handle_settings = require("handle_settings")
 
 local function insert_surface_conditions()
 	local sc = {
@@ -12,7 +11,9 @@ local function insert_surface_conditions()
 	return sc
 end
 
-local scaleWithQualityAndPressure = surface_conditions.scaleWithQualityAndPressure()
+local extended_collision_area = handle_settings.useExtendedCollisionArea()
+local powersetting = handle_settings.WindPower()
+local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
 data:extend({
 	-- Item, Recipe and Tech
@@ -67,11 +68,11 @@ data:extend({
 			render_no_power_icon = false,
 			render_no_network_icon = true,
 			usage_priority = 'primary-output',
-			buffer_capacity = tostring(settings.startup['texugo-wind-power'].value * 67.5 * scaleWithQualityAndPressure)..'kW',
+			buffer_capacity = tostring(powersetting * 67.5 * scaleWithQualityAndPressure)..'kW',
 			input_flow_limit = '0W',
-			output_flow_limit = tostring(settings.startup['texugo-wind-power'].value * 67.5 * scaleWithQualityAndPressure)..'kW',
+			output_flow_limit = tostring(powersetting * 67.5 * scaleWithQualityAndPressure)..'kW',
 		},
-		energy_production = tostring(settings.startup['texugo-wind-power'].value * 67.5)..'kW',
+		energy_production = tostring(powersetting * 67.5)..'kW',
 		--		gui_mode = 'none',
 		continuous_animation = false,
 		animation = {

@@ -14,6 +14,8 @@ local function insert_surface_conditions()
     return sc
 end
 
+local scaleWithQualityAndPressure = surface_conditions.scaleWithQualityAndPressure()
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -93,10 +95,11 @@ data:extend({
 		energy_source = {
 			type = 'electric',
 			render_no_power_icon = false,
+			render_no_network_icon = true,
 			usage_priority = 'primary-output',
-			buffer_capacity = tostring(settings.startup['texugo-wind-power'].value * 10)..'MJ',
+			buffer_capacity = tostring(settings.startup['texugo-wind-power'].value * 67500 * scaleWithQualityAndPressure)..'kW',
 			input_flow_limit = '0W',
-			output_flow_limit = tostring(settings.startup['texugo-wind-power'].value * 67500)..'kW',
+			output_flow_limit = tostring(settings.startup['texugo-wind-power'].value * 67500 * scaleWithQualityAndPressure)..'kW',
 		},
 		energy_production = tostring(settings.startup['texugo-wind-power'].value * 67500)..'kW',
 		gui_mode = 'none',

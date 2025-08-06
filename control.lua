@@ -9,8 +9,8 @@ script.on_nth_tick(6000, function(event)
 end)
 
 local powersetting = settings.startup['texugo-wind-power'].value
-local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
 local use_extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
+local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
 local wind_scale_with_pressure = settings.startup['texugo-wind-scale-with-pressure'].value
 
 local output_modifiers = {
@@ -64,11 +64,12 @@ script.on_nth_tick(120, function(event)
             local qf
             -- if somebody uses a mod with additional quality levels
             if ql > 4 then
-                qf = quality_factor[4] + 0.2 + (ql - 4) / ql
+                qf = quality_factor[4] + (ql - 4) / ql
             else
                 qf = quality_factor[ql]
             end
 
+            local pf = 1
             if use_surface_wind_speed then
                 local surface = wind_turbine[4]
                 local surface_index = surface.index
@@ -81,7 +82,8 @@ script.on_nth_tick(120, function(event)
 
                 -- surface already used in this round?
                 if knownSurface[surface_index] then
-                    y = knownSurface[surface_index]
+                    y = knownSurface[surface_index].y
+                    pf = knownSurface[surface_index].pf
                 else
                     -- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
                     local current = surface.wind_orientation
@@ -91,14 +93,18 @@ script.on_nth_tick(120, function(event)
 
                     if wind_scale_with_pressure then
                         -- scale with pressure on planet
-                        y = y * storage.pressures[surface_name] / nauvis
+                        pf = storage.pressures[surface_name] / nauvis
                     end
 
-                    knownSurface[surface_index] = y
+                    knownSurface[surface_index] = {
+                        y = y,
+                        pf = pf
+                    }
                 end
             end
 
-            entity.power_production = y * 67500/60 * powersetting * output_modifiers[name] * qf
+            entity.power_production = y * 67500/60 * powersetting * output_modifiers[name] * qf * pf
+            entity.electric_buffer_size = 67500/60 * powersetting * output_modifiers[name] * qf * pf
         end
     end
 end)

@@ -85,7 +85,7 @@ data:extend({
 			scale = 0.6,
 			frame_count = 44,
 			shift = {2, -1.2},
-			animation_speed = 0.005
+			animation_speed = 0.005 / math.sqrt(scaleWithQualityAndPressure)
 		},
 		min_perceived_performance = 1.0,
 		surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),

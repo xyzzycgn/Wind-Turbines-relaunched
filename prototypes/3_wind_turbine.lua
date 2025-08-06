@@ -112,7 +112,7 @@ data:extend({
 			scale = 1.1,
 			frame_count = 44,
 			shift = {4.8, -4.1},
-			animation_speed = 0.000015,
+			animation_speed = 0.000015 / math.sqrt(scaleWithQualityAndPressure),
 			priority = "low"
 		},
 		min_perceived_performance = 1.0,

@@ -105,7 +105,7 @@ data:extend({
 			width = 650,
 			height = 500,
 			scale = 0.5,
-			animation_speed = 0.0007,
+			animation_speed = 0.0007 / math.sqrt(scaleWithQualityAndPressure),
 			frame_count = 44,
 			shift = {2.5, -1.6},
 		},

@@ -10,7 +10,7 @@ function surface_conditions.surface_condition(property, min, max)
 end
 
 function surface_conditions.pressure()
-    return surface_conditions.surface_condition("pressure", 800, 1.7976931348623156e+308)
+    return surface_conditions.surface_condition("pressure", 800, 20000)
 end
 
 -- checks the existence of space age DLC and only if it's present return the result of the referred function

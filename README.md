@@ -18,13 +18,20 @@ There are several options you can use to configure behaviour of this mod.
   Allows disabling the Giant wind turbine for low-end computers where the large graphics might cause problems. 
   Giant wind turbine is enabled by default.
 
-- Surface determines wind strength (since version 2.1.0)   
-  Uses wind strength determined by the surface (individual for each surface) changing in a more random based manner
-  instead of the original periodic function with identical values of wind strength on all surfaces. Enabled by default.
+- Determination of wind strength (since version 2.1.1, extended from 2.1.0)  
+  Here you can choose how this mod calculates the wind strength (and thus the energy yield). There are three different modes:
+  - classical  
+    Use of the original (periodic) function with identical values of wind strength on all surfaces
+  - surface  
+    Uses wind strength determined by the surface (individual for each surface) changing in a more random based manner
+  - surface + pressure (new in 2.1.1) 
+    Wind strength is determined like in mode _surface_, but additionally the energy yield is influenced by atmospheric 
+    pressure of the planet/moon (increases at higher pressure and decreases at lower pressure). The change is based on 
+    the ratio of air pressure compared to nauvis. This is the default.
 
 - Wind turbines take up more space (since version 2.1.0)    
   If enabled, the space behind the wind turbines is reserved, so that nothing can be built there (classical behaviour, 
-  disabled by default).
+  **disabled** by default).
 
 ## Quality
 Quality (introduced by SPA) is supported. The different quality tiers offer increased health and energy output.

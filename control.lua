@@ -2,15 +2,18 @@
 -- https://www.geogebra.org/m/GDgua6HK
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
+local handle_settings = require("handle_settings")
+
 script.on_nth_tick(6000, function(event)
     if storage.wind >= 1800 then
         storage.wind = 0
     end
 end)
 
-local powersetting = settings.startup['texugo-wind-power'].value
-local use_surface_wind_speed = settings.startup['texugo-wind-use-surface-wind-speed'].value
-local use_extended_collision_area = settings.startup['texugo-wind-extended-collision-area'].value
+local powersetting = handle_settings.WindPower()
+local use_extended_collision_area = handle_settings.useExtendedCollisionArea()
+local use_surface_wind_speed = handle_settings.useSurfaceWindSpeed()
+local wind_scale_with_pressure = handle_settings.scaleWithPressure()
 
 local output_modifiers = {
     ['texugo-wind-turbine'] = 1,
@@ -51,25 +54,28 @@ script.on_nth_tick(120, function(event)
     local y = not use_surface_wind_speed and ((math.sin(3*x/2)/3)+(math.sin(2*x/2+2)/3)+(math.sin(3*x/2-3)/2)-(math.sin(4*x/2+1)/3)-
             (math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655 or 0
 
-    local ks = {}
+    local knownSurface = {}
+    local nauvis = storage.pressures['nauvis']
 
     for _, wind_turbine in pairs(storage.wind_turbines) do
-        local wt1 = wind_turbine[1]
-        local wt2 = wind_turbine[2]
+        local entity = wind_turbine[1]
+        local name = wind_turbine[2]
 
-        if wt1.valid and wt1.type == 'electric-energy-interface' then
-            local ql = wt1.quality.level
+        if entity.valid and entity.type == 'electric-energy-interface' then
+            local ql = entity.quality.level
             local qf
             -- if somebody uses a mod with additional quality levels
             if ql > 4 then
-                qf = quality_factor[4] + 0.2 + (ql - 4) / ql
+                qf = quality_factor[4] + (ql - 4) / ql
             else
                 qf = quality_factor[ql]
             end
 
+            local pf = 1
             if use_surface_wind_speed then
                 local surface = wind_turbine[4]
                 local surface_index = surface.index
+                local surface_name = surface.name
 
                 -- init for a never used before surface
                 if not storage.wind_speed_on_surface[surface_index] then
@@ -77,19 +83,30 @@ script.on_nth_tick(120, function(event)
                 end
 
                 -- surface already used in this round?
-                if ks[surface_index] then
-                    y = ks[surface_index]
+                if knownSurface[surface_index] then
+                    y = knownSurface[surface_index].y
+                    pf = knownSurface[surface_index].pf
                 else
                     -- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
                     local current = surface.wind_orientation
                     -- The raw value can jump between 0 and 1 (or vice versa), so smooth it
                     y = alpha * current + (1 - alpha) * storage.wind_speed_on_surface[surface_index]
-                    ks[surface_index] = y
                     storage.wind_speed_on_surface[surface_index] = y
+
+                    if wind_scale_with_pressure then
+                        -- scale with pressure on planet
+                        pf = storage.pressures[surface_name] / nauvis
+                    end
+
+                    knownSurface[surface_index] = {
+                        y = y,
+                        pf = pf
+                    }
                 end
             end
 
-            wt1.power_production = y * 67500/60 * powersetting * output_modifiers[wt2] * qf
+            entity.power_production = y * 67500/60 * powersetting * output_modifiers[name] * qf * pf
+            entity.electric_buffer_size = 67500/60 * powersetting * output_modifiers[name] * qf * pf
         end
     end
 end)
@@ -151,7 +168,20 @@ local function check_connectivity()
         end
     end
 end
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+local function updatePressures()
+    local pressures = {}
+    for k, v in pairs(prototypes.space_location) do
+        if v.type == "planet" then
+            pressures[k] = v.surface_properties and v.surface_properties.pressure or 1000 -- if no pressure set, assume default (from nauvis)
+        end
+    end
+
+    log(serpent.block(pressures))
+    storage.pressures =  pressures
+end
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 --- called from on_init and on_configuration_changed
 local function create_vars()
@@ -176,10 +206,14 @@ local function create_vars()
 
         storage.old_extended_collision_area = use_extended_collision_area
     end
+
+    updatePressures()
 end
+-- ###############################################################
 
 script.on_init(create_vars)
 script.on_configuration_changed(create_vars)
+script.on_event({ defines.events.on_surface_created, defines.events.on_surface_deleted }, updatePressures)
 
 script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity, defines.events.script_raised_revive}, function(event)
     local entity = event.created_entity or event.entity

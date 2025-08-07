@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2025-08-07
+  Balancing:
+    - reduced maximum of allowed pressure for building on a surface to a reasonable value
+  Changes:
+    - introduced 3rd operational mode for wind speed/energy yield calculation
+    - made power output and displayed values in gui consistent
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2025-07-18
   Changes:

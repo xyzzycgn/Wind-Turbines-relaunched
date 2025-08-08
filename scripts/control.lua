@@ -46,7 +46,7 @@ local reverse_map = {
     ['twt-collision-rect4'] = 'texugo-wind-turbine4',
 }
 
-script.on_nth_tick(120, function(event)
+local function businessLogic(event)
     storage.wind = storage.wind + 0.02
     local x = storage.wind
     -- legacy function
@@ -100,7 +100,7 @@ script.on_nth_tick(120, function(event)
             entity.electric_buffer_size = 67500/60 * powersetting * output_modifiers[name] * qf * pf
         end
     end
-end)
+end
 -- ###############################################################
 
 --- check after switching use_extended_collision_area on
@@ -171,10 +171,67 @@ local function updatePressures()
     log(serpent.block(pressures))
     storage.pressures =  pressures
 end
--- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- ###############################################################
+
+--- register complexer events, i.e with additional filters
+local function registerEvents()
+    -- Damage to the base (can only take impact damage) is transmitted to the turbine (for example, when impacting with a car or tank)
+    script.on_event(defines.events.on_entity_damaged, function(event)
+        local entity = event.entity
+        if entity and reverse_map[entity.name] then
+            for _, turbine in pairs(entity.surface.find_entities_filtered{position = entity.position, name = reverse_map[entity.name]}) do
+                if event.cause then
+                    turbine.damage(event.original_damage_amount, event.force, event.damage_type.name, event.cause)
+                else
+                    turbine.damage(event.original_damage_amount, event.force, event.damage_type.name)
+                end
+                -- Keep the two entities damage in sync as long as the turbine hasn't been destroyed
+                if turbine and turbine.valid then
+                    entity.health = turbine.health
+                end
+            end
+        end
+    end,
+            {
+                {filter="type", type = "simple-entity-with-owner"},
+                {filter="name", name = "twt-collision-rect"},
+                {filter="name", name = "twt-collision-rect2"},
+                {filter="name", name = "twt-collision-rect3"},
+                {filter="name", name = "twt-collision-rect4"}
+            }
+    )
+end
+-- ###############################################################
+
+local function build_entity(event)
+    local entity = event.created_entity or event.entity
+    if turbine_map[entity.name] then
+        local registration_number = script.register_on_object_destroyed(entity)
+        storage.wind_turbines[registration_number] = {entity, entity.name, entity.position, entity.surface}
+        local collision_rect = entity.surface.create_entity{name = turbine_map[entity.name], position = entity.position, force = entity.force}
+        collision_rect.minable = false
+        collision_rect.health = entity.health
+    end
+end
+-- ###############################################################
+
+local function destroy_object(event)
+    local entity = storage.wind_turbines[event.registration_number]
+    if entity and turbine_map[entity[2]] then
+        if entity[4].valid then
+            for _, collision_rect in pairs(entity[4].find_entities_filtered{position = entity[3], name = turbine_map[entity[2]]}) do
+                collision_rect.destroy()
+            end
+        end
+    end
+    storage.wind_turbines[event.registration_number] = nil
+end
+-- ###############################################################
 
 --- called from on_init and on_configuration_changed
-local function create_vars()
+local function initializer()
+    registerEvents()
+
     storage.wind = storage.wind or 0
     storage.wind_turbines = storage.wind_turbines or {}
     storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
@@ -201,54 +258,29 @@ local function create_vars()
 end
 -- ###############################################################
 
-script.on_init(create_vars)
-script.on_configuration_changed(create_vars)
-script.on_event({ defines.events.on_surface_created, defines.events.on_surface_deleted }, updatePressures)
+--- called from on_load
+local function load()
+    registerEvents()
+end
+-- ###############################################################
 
-script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_entity, defines.events.script_raised_revive}, function(event)
-    local entity = event.created_entity or event.entity
-    if turbine_map[entity.name] then
-        local registration_number = script.register_on_object_destroyed(entity)
-        storage.wind_turbines[registration_number] = {entity, entity.name, entity.position, entity.surface}
-        local collision_rect = entity.surface.create_entity{name = turbine_map[entity.name], position = entity.position, force = entity.force}
-        collision_rect.minable = false
-        collision_rect.health = entity.health
-    end
-end)
+local control = {}
 
-script.on_event(defines.events.on_object_destroyed, function(event)
-    local entity = storage.wind_turbines[event.registration_number]
-    if entity and turbine_map[entity[2]] then
-        for _, collision_rect in pairs(entity[4].find_entities_filtered{position = entity[3], name = turbine_map[entity[2]]}) do
-            collision_rect.destroy()
-        end
-    end
-    storage.wind_turbines[event.registration_number] = nil
-end)
+control.on_init = initializer
+control.on_load = load
+control.on_configuration_changed = initializer
 
+control.events = {
+    [defines.events.on_surface_created] = updatePressures,
+    [defines.events.on_surface_deleted] = updatePressures,
+    [defines.events.on_built_entity] = build_entity,
+    [defines.events.on_robot_built_entity] = build_entity,
+    [defines.events.script_raised_revive]= build_entity,
+    [defines.events.on_object_destroyed]= destroy_object,
+}
 
--- Damage to the base (can only take impact damage) is transmitted to the turbine (for example, when impacting with a car or tank)
-script.on_event(defines.events.on_entity_damaged, function(event)
-    local entity = event.entity
-    if entity and reverse_map[entity.name] then
-        for _, turbine in pairs(entity.surface.find_entities_filtered{position = entity.position, name = reverse_map[entity.name]}) do
-            if event.cause then
-                turbine.damage(event.original_damage_amount, event.force, event.damage_type.name, event.cause)
-            else
-                turbine.damage(event.original_damage_amount, event.force, event.damage_type.name)
-            end
-            -- Keep the two entities damage in sync as long as the turbine hasn't been destroyed
-            if turbine and turbine.valid then
-                entity.health = turbine.health
-            end
-        end
-    end
-end,
-        {
-            {filter="type", type = "simple-entity-with-owner"},
-            {filter="name", name = "twt-collision-rect"},
-            {filter="name", name = "twt-collision-rect2"},
-            {filter="name", name = "twt-collision-rect3"},
-            {filter="name", name = "twt-collision-rect4"}
-        }
-)
+control.on_nth_tick = {
+    [120] = businessLogic,
+}
+
+return control

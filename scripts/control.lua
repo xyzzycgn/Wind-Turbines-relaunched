@@ -5,12 +5,6 @@
 local handle_settings = require("scripts/handle_settings")
 local wind_speed = require("scripts/wind_speed")
 
-script.on_nth_tick(6000, function(event)
-    if storage.wind >= 1800 then
-        storage.wind = 0
-    end
-end)
-
 local powersetting = handle_settings.WindPower()
 local use_extended_collision_area = handle_settings.useExtendedCollisionArea()
 local use_surface_wind_speed = handle_settings.useSurfaceWindSpeed()
@@ -45,6 +39,13 @@ local reverse_map = {
     ['twt-collision-rect3'] = 'texugo-wind-turbine3',
     ['twt-collision-rect4'] = 'texugo-wind-turbine4',
 }
+
+local function resetWindCount(event)
+    if storage.wind >= 1800 then
+        storage.wind = 0
+    end
+end
+-- ###############################################################
 
 local function businessLogic(event)
     storage.wind = storage.wind + 0.02
@@ -228,14 +229,7 @@ local function destroy_object(event)
 end
 -- ###############################################################
 
---- called from on_init and on_configuration_changed
-local function initializer()
-    registerEvents()
-
-    storage.wind = storage.wind or 0
-    storage.wind_turbines = storage.wind_turbines or {}
-    storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
-
+local function checkSettings()
     if storage.old_extended_collision_area == nil then
         log("no old_extended_collision_area present")
         --- in prior versions all turbine always had an extended collision_area
@@ -253,7 +247,17 @@ local function initializer()
 
         storage.old_extended_collision_area = use_extended_collision_area
     end
+end
+-- ###############################################################
 
+--- called from on_init
+local function initializer()
+    storage.wind = storage.wind or 0
+    storage.wind_turbines = storage.wind_turbines or {}
+    storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
+
+    checkSettings()
+    registerEvents()
     updatePressures()
 end
 -- ###############################################################
@@ -261,6 +265,13 @@ end
 --- called from on_load
 local function load()
     registerEvents()
+    updatePressures()
+end
+-- ###############################################################
+
+--- called from on_configuration_changed
+local function configuration_changed()
+    checkSettings()
 end
 -- ###############################################################
 
@@ -268,7 +279,7 @@ local control = {}
 
 control.on_init = initializer
 control.on_load = load
-control.on_configuration_changed = initializer
+control.on_configuration_changed = configuration_changed
 
 control.events = {
     [defines.events.on_surface_created] = updatePressures,
@@ -281,6 +292,7 @@ control.events = {
 
 control.on_nth_tick = {
     [120] = businessLogic,
+    [6000] = resetWindCount,
 }
 
 return control

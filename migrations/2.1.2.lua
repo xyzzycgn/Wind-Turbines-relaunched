@@ -8,6 +8,7 @@ log("start migration to 2.1.2")
 
 for si, _ in pairs(storage.wind_speed_on_surface) do
     storage.wind_speed_on_surface[si] = wind_speed.init()
+    log(serpent.line(storage.wind_speed_on_surface[si]))
 end
 
 log("migration to 2.1.2 finshed")

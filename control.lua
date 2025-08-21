@@ -3,6 +3,7 @@
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
 local handle_settings = require("scripts/handle_settings")
+local wind_speed = require("scripts/wind_speed")
 
 script.on_nth_tick(6000, function(event)
     if storage.wind >= 1800 then
@@ -78,20 +79,21 @@ script.on_nth_tick(120, function(event)
                 local surface_name = surface.name
 
                 -- init for a never used before surface
-                if not storage.wind_speed_on_surface[surface_index] then
-                    storage.wind_speed_on_surface[surface_index] = surface.wind_orientation
-                end
+                --if not storage.wind_speed_on_surface[surface_index] then
+                --    storage.wind_speed_on_surface[surface_index] = surface.wind_orientation
+                --end
 
                 -- surface already used in this round?
                 if knownSurface[surface_index] then
                     y = knownSurface[surface_index].y
                     pf = knownSurface[surface_index].pf
                 else
-                    -- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
-                    local current = surface.wind_orientation
-                    -- The raw value can jump between 0 and 1 (or vice versa), so smooth it
-                    y = alpha * current + (1 - alpha) * storage.wind_speed_on_surface[surface_index]
-                    storage.wind_speed_on_surface[surface_index] = y
+                    y = wind_speed.windspeed(surface_index)
+                    ---- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
+                    --local current = surface.wind_orientation
+                    ---- The raw value can jump between 0 and 1 (or vice versa), so smooth it
+                    --y = alpha * current + (1 - alpha) * storage.wind_speed_on_surface[surface_index]
+                    --storage.wind_speed_on_surface[surface_index] = y
 
                     if wind_scale_with_pressure then
                         -- scale with pressure on planet

@@ -2,7 +2,7 @@
 -- https://www.geogebra.org/m/GDgua6HK
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
-local handle_settings = require("handle_settings")
+local handle_settings = require("scripts/handle_settings")
 
 script.on_nth_tick(6000, function(event)
     if storage.wind >= 1800 then

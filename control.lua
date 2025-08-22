@@ -2,7 +2,8 @@
 -- https://www.geogebra.org/m/GDgua6HK
 -- y = sin(3x/2)/3+sin(2x/2+2)/3+sin(3x/2-3)/2-sin(4x/2+1)/3-sin(5x/2+3)/4-sin(6x/2+4)/2+sin(x/3)+2.5
 
-local handle_settings = require("handle_settings")
+local handle_settings = require("scripts/handle_settings")
+local wind_speed = require("scripts/wind_speed")
 
 script.on_nth_tick(6000, function(event)
     if storage.wind >= 1800 then
@@ -45,8 +46,6 @@ local reverse_map = {
     ['twt-collision-rect4'] = 'texugo-wind-turbine4',
 }
 
-local alpha = 0.2  -- smoothing factor
-
 script.on_nth_tick(120, function(event)
     storage.wind = storage.wind + 0.02
     local x = storage.wind
@@ -77,21 +76,13 @@ script.on_nth_tick(120, function(event)
                 local surface_index = surface.index
                 local surface_name = surface.name
 
-                -- init for a never used before surface
-                if not storage.wind_speed_on_surface[surface_index] then
-                    storage.wind_speed_on_surface[surface_index] = surface.wind_orientation
-                end
-
                 -- surface already used in this round?
                 if knownSurface[surface_index] then
                     y = knownSurface[surface_index].y
                     pf = knownSurface[surface_index].pf
                 else
-                    -- wind_speed seems to be constant 0.2 - that's why we use the orientation as replacement ;-)
-                    local current = surface.wind_orientation
-                    -- The raw value can jump between 0 and 1 (or vice versa), so smooth it
-                    y = alpha * current + (1 - alpha) * storage.wind_speed_on_surface[surface_index]
-                    storage.wind_speed_on_surface[surface_index] = y
+                    -- we need ~70% propability (exactly 450/675 = 2/3). windspeed has an average of 50%
+                    y = math.sqrt(wind_speed.windspeed(surface_index))
 
                     if wind_scale_with_pressure then
                         -- scale with pressure on planet
@@ -152,7 +143,6 @@ local function check_connectivity()
     for _, wind_turbine in pairs(storage.wind_turbines) do
         local entity = wind_turbine[1]
         local name = wind_turbine[2]
-        local position= wind_turbine[3]
         local surface = wind_turbine[4]
 
         if not (entity.is_connected_to_electric_network() or surface.has_global_electric_network) then

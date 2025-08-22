@@ -1,6 +1,6 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
-local handle_settings = require("handle_settings")
+local handle_settings = require("scripts/handle_settings")
 
 -- Allow disabling the Titanic wind turbine (by not including it at all) for very low-end computers where the large graphics might cause problems
 if handle_settings.WindTurbine4() then

@@ -1,3 +1,5 @@
+test/
+lib/
 .git/
 .github/
 .gitignore

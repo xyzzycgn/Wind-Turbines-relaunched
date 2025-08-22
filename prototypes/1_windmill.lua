@@ -1,6 +1,6 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
-local handle_settings = require("handle_settings")
+local handle_settings = require("scripts/handle_settings")
 
 local function insert_surface_conditions()
 	local sc = {

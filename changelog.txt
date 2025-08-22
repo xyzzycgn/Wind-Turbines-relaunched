@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.2
+Date: 2025-08-22
+  Balancing:
+    - made wind speed function less erratic (and thus a bit more reliable)
+  Changes:
+    - improved (early game) integration for Krastorio 2 / Krastorio 2 Spaced Out
+---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2025-08-07
   Balancing:

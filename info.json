@@ -8,6 +8,7 @@
 	"homepage": "",
 	"dependencies": [
 		"? bobelectronics",
-		"? Krastorio2"
+		"? Krastorio2 >= 2.0.8",
+		"? Krastorio2-spaced-out >= 1.4.12"
 	]
 }

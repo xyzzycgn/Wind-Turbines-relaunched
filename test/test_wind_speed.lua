@@ -54,13 +54,17 @@ end
 function TestWindSpeed:test_windspeed_updates_and_clamps_values_over_multiple_steps()
     -- Calls should update the state and keep values within bounds
     local idx = 2
-    for _ = 1, 100 do
+    local sum = 0
+    local max = 100000
+    for _ = 1, max do
         local v = wind_speed.windspeed(idx)
+        sum = sum + v
         lu.assertTrue(v >= 0 and v <= 1, "v should stay in [0,1]")
         local ws = storage.wind_speed_on_surface[idx]
         lu.assertTrue(ws.v >= 0 and ws.v <= 1, "stored v should stay in [0,1]")
         lu.assertTrue(ws.delta_v >= -0.05 and ws.delta_v <= 0.05, "delta_v should stay in [-0.05,0.05]")
     end
+    lu.assertTrue(max * 0.45 <= sum and sum <= max * 0.55, "sum should stay in interval of [45%, 55%]")
 end
 
 function TestWindSpeed:test_delta_logic_when_negative()

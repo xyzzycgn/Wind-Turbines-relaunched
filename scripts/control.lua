@@ -169,7 +169,6 @@ local function updatePressures()
         end
     end
 
-    log(serpent.block(pressures))
     storage.pressures =  pressures
 end
 -- ###############################################################

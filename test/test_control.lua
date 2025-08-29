@@ -47,6 +47,15 @@ local control = require('scripts.control')
 
 TestControl = {}
 
+local function mock_turbine(entity, name, position, surface)
+    return {
+        entity = entity,
+        name = name,
+        position = position,
+        surface = surface
+    }
+end
+
 function TestControl:setUp()
     prototypes = {
         space_location = {
@@ -156,7 +165,7 @@ function TestControl:testBusinessLogic()
         electric_buffer_size = 0
     }
     
-    storage.wind_turbines[1] = {mock_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'}}
+    storage.wind_turbines[1] = mock_turbine(mock_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'})
     
     control.on_nth_tick[120]()
     
@@ -189,7 +198,7 @@ function TestControl:testBuildEntity()
     control.events[defines.events.on_built_entity](event)
     
     lu.assertNotNil(storage.wind_turbines[123])
-    lu.assertEquals(storage.wind_turbines[123][2], 'texugo-wind-turbine')
+    lu.assertEquals(storage.wind_turbines[123].name, 'texugo-wind-turbine')
 end
 -- ###############################################################
 
@@ -250,15 +259,15 @@ function TestControl:testQualityFactors()
             electric_buffer_size = 0
         }
         
-        storage.wind_turbines[quality_level] = {mock_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'}}
+        storage.wind_turbines[quality_level] = mock_turbine(mock_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'})
     end
     
     control.on_nth_tick[120]()
     
     -- Verify that higher quality levels produce more power
-    lu.assertTrue(storage.wind_turbines[1][1].power_production > storage.wind_turbines[0][1].power_production)
-    lu.assertTrue(storage.wind_turbines[4][1].power_production > storage.wind_turbines[3][1].power_production)
-    lu.assertTrue(storage.wind_turbines[5][1].power_production > storage.wind_turbines[4][1].power_production)
+    lu.assertTrue(storage.wind_turbines[1].entity.power_production > storage.wind_turbines[0].entity.power_production)
+    lu.assertTrue(storage.wind_turbines[4].entity.power_production > storage.wind_turbines[3].entity.power_production)
+    lu.assertTrue(storage.wind_turbines[5].entity.power_production > storage.wind_turbines[4].entity.power_production)
 end
 -- ###############################################################
 
@@ -277,14 +286,14 @@ function TestControl:testDifferentTurbineTypes()
             electric_buffer_size = 0
         }
         
-        storage.wind_turbines[i] = {mock_entity, turbine_type, {x = 0, y = 0}, {index = 1, name = 'nauvis'}}
+        storage.wind_turbines[i] = mock_turbine(mock_entity, turbine_type, {x = 0, y = 0}, {index = 1, name = 'nauvis'})
     end
     
     control.on_nth_tick[120]()
     
     -- Verify that higher tier turbines produce more power
-    lu.assertTrue(storage.wind_turbines[2][1].power_production > storage.wind_turbines[1][1].power_production)
-    lu.assertTrue(storage.wind_turbines[4][1].power_production > storage.wind_turbines[3][1].power_production)
+    lu.assertTrue(storage.wind_turbines[2].entity.power_production > storage.wind_turbines[1].entity.power_production)
+    lu.assertTrue(storage.wind_turbines[4].entity.power_production > storage.wind_turbines[3].entity.power_production)
 end
 -- ###############################################################
 
@@ -377,10 +386,10 @@ function TestControl:testPressureScaling()
         power_production = 0,
         electric_buffer_size = 0
     }
-    
-    storage.wind_turbines[1] = {nauvis_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'}}
-    storage.wind_turbines[2] = {vulcanus_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 2, name = 'vulcanus'}}
-    
+
+    storage.wind_turbines[1] = mock_turbine(nauvis_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 1, name = 'nauvis'})
+    storage.wind_turbines[2] = mock_turbine(vulcanus_entity, 'texugo-wind-turbine', {x = 0, y = 0}, {index = 2, name = 'vulcanus'})
+
     control_test.on_nth_tick[120]()
     
     -- Vulcanus has 4x the pressure of Nauvis (4000/1000), so should produce 4x the power

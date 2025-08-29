@@ -58,8 +58,8 @@ local function businessLogic(event)
     local nauvis = storage.pressures['nauvis']
 
     for _, wind_turbine in pairs(storage.wind_turbines) do
-        local entity = wind_turbine[1]
-        local name = wind_turbine[2]
+        local entity = wind_turbine.entity
+        local name = wind_turbine.name
 
         if entity.valid and entity.type == 'electric-energy-interface' then
             local ql = entity.quality.level
@@ -73,7 +73,7 @@ local function businessLogic(event)
 
             local pf = 1
             if use_surface_wind_speed then
-                local surface = wind_turbine[4]
+                local surface = wind_turbine.surface
                 local surface_index = surface.index
                 local surface_name = surface.name
 
@@ -107,10 +107,10 @@ end
 --- check after switching use_extended_collision_area on
 local function check_collisions()
     for _, wind_turbine in pairs(storage.wind_turbines) do
-        local entity = wind_turbine[1]
-        local name = wind_turbine[2]
-        local position= wind_turbine[3]
-        local surface = wind_turbine[4]
+        local entity = wind_turbine.entity
+        local name = wind_turbine.name
+        local position= wind_turbine.position
+        local surface = wind_turbine.surface
         local cb = entity.prototype.collision_box
         local cm = entity.prototype.collision_mask.layers
         local area = {{ position.x + cb.left_top.x, position.y + cb.left_top.y },
@@ -142,9 +142,9 @@ end
 --- check after switching use_extended_collision_area off
 local function check_connectivity()
     for _, wind_turbine in pairs(storage.wind_turbines) do
-        local entity = wind_turbine[1]
-        local name = wind_turbine[2]
-        local surface = wind_turbine[4]
+        local entity = wind_turbine.entity
+        local name = wind_turbine.name
+        local surface = wind_turbine.surface
 
         if not (entity.is_connected_to_electric_network() or surface.has_global_electric_network) then
             local quality = entity.quality.name
@@ -205,22 +205,27 @@ end
 -- ###############################################################
 
 local function build_entity(event)
-    local entity = event.created_entity or event.entity
-    if turbine_map[entity.name] then
-        local registration_number = script.register_on_object_destroyed(entity)
-        storage.wind_turbines[registration_number] = {entity, entity.name, entity.position, entity.surface}
-        local collision_rect = entity.surface.create_entity{name = turbine_map[entity.name], position = entity.position, force = entity.force}
+    local twt = event.created_entity or event.entity
+    if turbine_map[twt.name] then
+        local registration_number = script.register_on_object_destroyed(twt)
+        storage.wind_turbines[registration_number] = {
+            entity = twt,
+            name = twt.name,
+            position = twt.position,
+            surface = twt.surface
+        }
+        local collision_rect = twt.surface.create_entity{name = turbine_map[twt.name], position = twt.position, force = twt.force}
         collision_rect.minable = false
-        collision_rect.health = entity.health
+        collision_rect.health = twt.health
     end
 end
 -- ###############################################################
 
 local function destroy_object(event)
-    local entity = storage.wind_turbines[event.registration_number]
-    if entity and turbine_map[entity[2]] then
-        if entity[4].valid then
-            for _, collision_rect in pairs(entity[4].find_entities_filtered{position = entity[3], name = turbine_map[entity[2]]}) do
+    local twt = storage.wind_turbines[event.registration_number]
+    if twt and turbine_map[twt.name] then
+        if twt.surface.valid then
+            for _, collision_rect in pairs(twt.surface.find_entities_filtered{position = twt.position, name = turbine_map[twt.name]}) do
                 collision_rect.destroy()
             end
         end

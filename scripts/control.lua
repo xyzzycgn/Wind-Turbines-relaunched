@@ -47,6 +47,18 @@ local function resetWindCount(event)
 end
 -- ###############################################################
 
+local function updatePressures()
+    local pressures = {}
+    for k, v in pairs(prototypes.space_location) do
+        if v.type == "planet" then
+            pressures[k] = v.surface_properties and v.surface_properties.pressure or 1000 -- if no pressure set, assume default (from nauvis)
+        end
+    end
+
+    storage.pressures =  pressures
+end
+-- ###############################################################
+
 local function businessLogic(event)
     storage.wind = storage.wind + 0.02
     local x = storage.wind
@@ -55,6 +67,11 @@ local function businessLogic(event)
             (math.sin(5*x/2+3)/4)-(math.sin(6*x/2+4)/2)+math.sin(x/3)+2.5)/4.655 or 0
 
     local knownSurface = {}
+    -- prevent nil access
+    if not storage.pressures then
+        updatePressures()
+    end
+
     local nauvis = storage.pressures['nauvis']
 
     for _, wind_turbine in pairs(storage.wind_turbines) do
@@ -159,18 +176,6 @@ local function check_connectivity()
         end
     end
 end
--- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-local function updatePressures()
-    local pressures = {}
-    for k, v in pairs(prototypes.space_location) do
-        if v.type == "planet" then
-            pressures[k] = v.surface_properties and v.surface_properties.pressure or 1000 -- if no pressure set, assume default (from nauvis)
-        end
-    end
-
-    storage.pressures =  pressures
-end
 -- ###############################################################
 
 --- register complexer events, i.e with additional filters
@@ -269,7 +274,6 @@ end
 --- called from on_load
 local function load()
     registerEvents()
-    updatePressures()
 end
 -- ###############################################################
 

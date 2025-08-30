@@ -27,6 +27,7 @@ local function init()
 end
 
 local function windspeed(surface_index)
+    storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
     local wsos = storage.wind_speed_on_surface[surface_index] or init()
 
     local v = in_range(wsos.v + wsos.delta_v, 0, 1)

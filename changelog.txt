@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.2.0
+Date: 2025-09-25
+  Bugfixes:
+    - Fixed problem with migration script for 2.1.2
+  Changes:
+    - changed internal representation of turbines
+---------------------------------------------------------------------------------------------------
 Version: 2.1.2
 Date: 2025-08-22
   Balancing:

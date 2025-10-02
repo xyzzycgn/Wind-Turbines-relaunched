@@ -15,6 +15,37 @@ local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local powersetting = handle_settings.WindPower()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
+local function recipeCosts()
+	if handle_settings.constructionMoreExpensive() then
+		return 6, {
+			{ type = "item", name = 'iron-gear-wheel',     amount = 10 },
+			{ type = "item", name = 'electronic-circuit',  amount =  3 },
+			{ type = "item", name = 'small-electric-pole', amount =  8 }
+		}
+	else
+		return 4, {
+			{ type = "item", name = 'iron-gear-wheel',     amount =  5 },
+			{ type = "item", name = 'electronic-circuit',  amount =  2 },
+			{ type = "item", name = 'small-electric-pole', amount =  8 }
+		}
+	end
+end
+
+local function make_recipe()
+	-- The Windmill requires no research and is automatically enabled from game start
+	local recipe = 	{
+		type = 'recipe',
+		name = 'texugo-wind-turbine',
+		icon = sprites.sprite 'windw_icon.png',
+		icon_size = 32,
+		enabled = true,
+		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
+	}
+
+	recipe.energy, recipe.ingredients = recipeCosts()
+	return recipe
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -28,21 +59,7 @@ data:extend({
 		place_result = 'texugo-wind-turbine',
 		stack_size = 50
 	},
-	-- The Windmill requires no research and is automatically enabled from game start
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine',
-		icon = sprites.sprite 'windw_icon.png',
-		icon_size = 32,
-		enabled = true,
-		energy = 4,
-		ingredients = {
-			{ type = "item", name = 'iron-gear-wheel',     amount = 5 },
-			{ type = "item", name = 'electronic-circuit',  amount = 2 },
-			{ type = "item", name = 'small-electric-pole', amount = 8 }
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
-	},
+	make_recipe(),
 	-- World Entities
 	{
 		type = 'electric-energy-interface',

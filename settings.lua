@@ -4,7 +4,7 @@ data:extend{
 		name = 'texugo-wind-power',
 		setting_type = 'startup',
 		default_value = 1,
-		maximum_value = 10,
+		maximum_value = 20,
 		minimum_value = 1,
 		order = 'a',
 	},
@@ -33,5 +33,12 @@ data:extend{
 		setting_type = 'startup',
 		default_value = false,
 		order = 'd',
+	},
+	{
+		type = 'bool-setting',
+		name = 'texugo-wind-expensive-recipes',
+		setting_type = 'startup',
+		default_value = false,
+		order = 'e',
 	},
 }

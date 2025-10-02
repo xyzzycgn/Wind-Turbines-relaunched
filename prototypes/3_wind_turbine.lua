@@ -14,6 +14,40 @@ local powersetting = handle_settings.WindPower()
 local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
+local function recipeCosts()
+	if handle_settings.constructionMoreExpensive() then
+		return 	90, {
+			{ type = "item", name = 'processing-unit',      amount =   25 },
+			{ type = "item", name = 'electric-engine-unit', amount =   80 },
+			{ type = "item", name = 'steel-plate',          amount =  400 },
+			{ type = "item", name = 'plastic-bar',          amount =  500 },
+			{ type = "item", name = 'concrete',             amount = 1000 }
+		}
+	else
+		return 60, {
+			{ type = "item", name = 'processing-unit',      amount =  15 },
+			{ type = "item", name = 'electric-engine-unit', amount =  40 },
+			{ type = "item", name = 'steel-plate', 			amount = 200 },
+			{ type = "item", name = 'plastic-bar', 			amount = 300 },
+			{ type = "item", name = 'concrete',    			amount = 400 }
+		}
+	end
+end
+
+local function make_recipe()
+	local recipe = {
+		type = 'recipe',
+		name = 'texugo-wind-turbine3',
+		icon = sprites.sprite 'windh_icon.png',
+		icon_size = 32,
+		enabled = false,
+		results = {{ type = "item", name = 'texugo-wind-turbine3', amount = 1 }},
+	}
+
+	recipe.energy, recipe.ingredients = recipeCosts()
+	return recipe
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -27,22 +61,7 @@ data:extend({
 		place_result = 'texugo-wind-turbine3',
 		stack_size = 4
 	},
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine3',
-		icon = sprites.sprite 'windh_icon.png',
-		icon_size = 32,
-		enabled = false,
-		energy = 60,
-		ingredients = {
-			{ type = "item", name = 'processing-unit',      amount = 15},
-			{ type = "item", name = 'electric-engine-unit', amount = 40},
-			{ type = "item", name = 'steel-plate', 			amount = 200},
-			{ type = "item", name = 'plastic-bar', 			amount = 300},
-			{ type = "item", name = 'concrete',    			amount = 400}
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine3', amount = 1 }},
-	},
+	make_recipe(),
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine3',

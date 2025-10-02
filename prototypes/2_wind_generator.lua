@@ -14,6 +14,38 @@ local powersetting = handle_settings.WindPower()
 local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
+local function recipeCosts()
+	if handle_settings.constructionMoreExpensive() then
+		return 25, {
+			{ type = "item", name = 'advanced-circuit', 	amount =  8 },
+			{ type = "item", name = 'engine-unit', 			amount = 20 },
+			{ type = "item", name = 'medium-electric-pole', amount =  5 },
+			{ type = "item", name = 'stone-wall', 			amount = 20 }
+		}
+	else
+		return 15, {
+			{ type = "item", name = 'advanced-circuit',     amount =  5 },
+			{ type = "item", name = 'engine-unit',          amount = 10 },
+			{ type = "item", name = 'medium-electric-pole', amount =  5 },
+			{ type = "item", name = 'stone-wall',           amount =  5 }
+		}
+	end
+end
+
+local function make_recipe()
+	local recipe =	{
+		type = 'recipe',
+		name = 'texugo-wind-turbine2',
+		icon = sprites.sprite 'winds_icon.png',
+		icon_size = 32,
+		enabled = false,
+		results = {{ type = "item", name = 'texugo-wind-turbine2', amount = 1 }},
+	}
+
+	recipe.energy, recipe.ingredients = recipeCosts()
+	return recipe
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -27,21 +59,7 @@ data:extend({
 		place_result = 'texugo-wind-turbine2',
 		stack_size = 20
 	},
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine2',
-		icon = sprites.sprite 'winds_icon.png',
-		icon_size = 32,
-		enabled = false,
-		energy = 15,
-		ingredients = {
-			{ type = "item", name = 'advanced-circuit',     amount = 5},
-			{ type = "item", name = 'engine-unit',          amount = 10},
-			{ type = "item", name = 'medium-electric-pole', amount = 5},
-			{ type = "item", name = 'stone-wall',           amount = 5}
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine2', amount = 1 }},
-	},
+	make_recipe(),
 	{
 		type = 'technology',
 		name = 'texugo-wind-turbine2',

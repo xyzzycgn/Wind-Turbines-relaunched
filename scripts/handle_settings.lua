@@ -54,5 +54,12 @@ function handle_settings.scaleWithQualityAndPressure()
     local scale = handle_settings.useSurfaceWindSpeed() and handle_settings.scaleWithPressure() and 20 or 1
     return mods["space-age"] and (scale * 3.5) or scale
 end
+-- ###############################################################
+
+--- Flag whether the more expensive recipes should be used for construction of turbines
+--- @return boolean
+function handle_settings.constructionMoreExpensive()
+    return settings.startup["texugo-wind-expensive-recipes"].value
+end
 
 return handle_settings

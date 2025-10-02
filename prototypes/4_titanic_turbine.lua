@@ -17,6 +17,45 @@ local powersetting = handle_settings.WindPower()
 local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
+local function recipeCosts()
+	if handle_settings.constructionMoreExpensive() then
+		return 400, {
+			{ type = "item", name = 'low-density-structure', amount =  500 },
+			{ type = "item", name = 'processing-unit',       amount =  100 },
+			{ type = "item", name = 'speed-module',          amount =  100 },
+			{ type = "item", name = 'heat-pipe',             amount =  100 },
+			{ type = "item", name = 'steam-turbine',         amount =   10 },
+			{ type = "item", name = 'steel-plate',           amount = 3000 },
+			{ type = "item", name = 'refined-concrete',      amount = 2000 }
+		}
+	else
+		return 240, {
+			{ type = "item", name = 'low-density-structure',   amount =  400 },
+			{ type = "item", name = 'processing-unit',         amount =   70 },
+			{ type = "item", name = 'speed-module',            amount =   70 },
+			{ type = "item", name = 'heat-pipe',        	   amount =   50 },
+			{ type = "item", name = 'steam-turbine',    	   amount =   10 },
+			{ type = "item", name = 'steel-plate',      	   amount = 2000 },
+			{ type = "item", name = 'refined-concrete', 	   amount = 1000 }
+		}
+	end
+end
+
+
+local function make_recipe()
+	local recipe = {
+		type = 'recipe',
+		name = 'texugo-wind-turbine4',
+		icon = sprites.sprite "titanicicon.png",
+		icon_size = 64,
+		enabled = false,
+		results = {{ type = "item", name = 'texugo-wind-turbine4', amount = 1 }},
+	}
+
+	recipe.energy, recipe.ingredients = recipeCosts()
+	return recipe
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -30,24 +69,7 @@ data:extend({
 		place_result = "texugo-wind-turbine4",
 		stack_size = 1
 	},
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine4',
-		icon = sprites.sprite "titanicicon.png",
-		icon_size = 64,
-		enabled = false,
-		energy = 240,
-		ingredients = {
-			{ type = "item", name = 'low-density-structure',   amount = 400},
-			{ type = "item", name = 'processing-unit',         amount = 70},
-			{ type = "item", name = 'speed-module',            amount = 70},
-			{ type = "item", name = 'heat-pipe',        	   amount = 50},
-			{ type = "item", name = 'steam-turbine',    	   amount = 10},
-			{ type = "item", name = 'steel-plate',      	   amount = 2000},
-			{ type = "item", name = 'refined-concrete', 	   amount = 1000}
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine4', amount = 1 }},
-	},
+	make_recipe(),
 	{
 		type = "technology",
 		name = "texugo-wind-turbine4",

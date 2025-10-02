@@ -209,4 +209,10 @@ function TestCommon:testMakeRecipeSingleIngredient()
 end
 -- ###############################################################
 
+function TestCommon:tearDown()
+    -- reset special settings after each test
+    require = original_require
+    package.loaded["scripts/handle_settings"] = nil -- Force reload for subsequent tests
+end
+
 BaseTest:hookTests()

@@ -33,6 +33,10 @@ There are several options you can use to configure behaviour of this mod.
   If enabled, the space behind the wind turbines is reserved, so that nothing can be built there (classical behaviour, 
   **disabled** by default).
 
+- higher construction costs (since version 2.2.1)
+  If enabled, construction of turbines requires more resources (disabled by default)
+
+
 ## Quality
 Quality (introduced by SPA) is supported. The different quality tiers offer increased health and energy output.
 Increase of energy output is analogous to that of a solar panel.

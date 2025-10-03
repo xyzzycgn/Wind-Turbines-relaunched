@@ -1,6 +1,7 @@
 local sprites = require('sprites')
 local surface_conditions = require('surface_conditions')
 local handle_settings = require("scripts/handle_settings")
+local common = require("prototypes/common")
 
 local function insert_surface_conditions()
 	local sc = {
@@ -15,6 +16,32 @@ local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local powersetting = handle_settings.WindPower()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
+local function make_recipe()
+	-- The Windmill requires no research and is automatically enabled from game start
+	return common.make_recipe({
+		type = 'recipe',
+		name = 'texugo-wind-turbine',
+		icon = sprites.sprite 'windw_icon.png',
+		icon_size = 32,
+		enabled = true,
+		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
+	}, {
+		energy = 4,
+		ingredients = {
+			{ 'iron-gear-wheel',     5 },
+			{ 'electronic-circuit',  2 },
+			{ 'small-electric-pole', 8 }
+		}
+	}, {
+		energy = 6,
+		ingredients = {
+			{ 'iron-gear-wheel',     10 },
+			{ 'electronic-circuit',   3 },
+			{ 'small-electric-pole',  8 }
+		}
+	} )
+end
+
 data:extend({
 	-- Item, Recipe and Tech
 	{
@@ -28,21 +55,7 @@ data:extend({
 		place_result = 'texugo-wind-turbine',
 		stack_size = 50
 	},
-	-- The Windmill requires no research and is automatically enabled from game start
-	{
-		type = 'recipe',
-		name = 'texugo-wind-turbine',
-		icon = sprites.sprite 'windw_icon.png',
-		icon_size = 32,
-		enabled = true,
-		energy = 4,
-		ingredients = {
-			{ type = "item", name = 'iron-gear-wheel',     amount = 5 },
-			{ type = "item", name = 'electronic-circuit',  amount = 2 },
-			{ type = "item", name = 'small-electric-pole', amount = 8 }
-		},
-		results = {{ type = "item", name = 'texugo-wind-turbine', amount = 1 }},
-	},
+	make_recipe(),
 	-- World Entities
 	{
 		type = 'electric-energy-interface',

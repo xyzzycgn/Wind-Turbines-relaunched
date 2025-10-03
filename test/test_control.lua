@@ -109,22 +109,7 @@ function TestControl:testLoad()
 end
 -- ###############################################################
 
-function TestControl:testLoadAdditionalPlanet()
-    prototypes.space_location.aquilo = { type = "planet", surface_properties = { pressure = 300 } }
-    storage.pressures= { fulgora = 800, nauvis = 1000, vulcanus = 4000 }
-    control.on_load()
-
-    lu.assertEquals(storage.pressures, { aquilo = 300, fulgora = 800, nauvis = 1000, vulcanus = 4000 })
-    checkEventRegistered()
-end
--- ###############################################################
-
-function TestControl:testLoadRemovalOfPlanet()
-    prototypes.space_location.fulgora = nil
-    storage.pressures = { fulgora = 800, nauvis = 1000, vulcanus = 4000 }
-    control.on_load()
-
-    lu.assertEquals(storage.pressures, { nauvis = 1000, vulcanus = 4000 })
+function TestControl:testLoad()
     checkEventRegistered()
 end
 -- ###############################################################

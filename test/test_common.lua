@@ -2,7 +2,7 @@
 --- Test für prototypes/common.lua
 ---
 require('test.BaseTest')
-local lu = require('lib.luaunit')
+local lu = require('luaunit')
 
 -- mocks for factorio APIs
 settings = {

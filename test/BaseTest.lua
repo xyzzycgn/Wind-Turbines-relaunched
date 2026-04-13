@@ -6,7 +6,7 @@
 local Require = require("test.require")
 require = Require.replace(require)
 
-local lu = require('lib.luaunit')
+local lu = require('luaunit')
 
 --########################################################
 

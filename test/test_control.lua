@@ -1,7 +1,7 @@
 --- Test for scripts/control.lua
 ---
 require('test.BaseTest')
-local lu = require('lib.luaunit')
+local lu = require('luaunit')
 
 
 -- Mocks for Factorio APIs

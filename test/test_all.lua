@@ -2,7 +2,7 @@
 --- Created by xyzzycgn.
 ---
 require('test.BaseTest')
-local lu = require('lib.luaunit')
+local lu = require('luaunit')
 
 --########################################################
 

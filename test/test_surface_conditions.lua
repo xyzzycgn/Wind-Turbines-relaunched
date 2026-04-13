@@ -2,7 +2,7 @@
 --- Test for prototypes/surface_conditions.lua
 ---
 require('test.BaseTest')
-local lu = require('lib.luaunit')
+local lu = require('luaunit')
 local sc = require('prototypes.surface_conditions')
 
 

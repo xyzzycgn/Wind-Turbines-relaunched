@@ -1,3 +1,7 @@
+[![](https://img.shields.io/factorio-mod-portal/factorio-version/Wind-Turbines-relaunched?label=factorio%20version&style=for-the-badge)](https://mods.factorio.com/mod/Wind-Turbines-relaunched) [![](https://img.shields.io/badge/dynamic/json?color=orange&label=Factorio&query=downloads_count&suffix=%20downloads&url=https%3A%2F%2Fmods.factorio.com%2Fapi%2Fmods%2FWind-Turbines-relaunched&style=for-the-badge)](https://mods.factorio.com/mod/Wind-Turbines-relaunched/downloads) [![](https://img.shields.io/factorio-mod-portal/v/Wind-Turbines-relaunched?style=for-the-badge&color=aqua)](https://mods.factorio.com/mod/Wind-Turbines-relaunched/changelog)
+
+[![](https://img.shields.io/github/issues/xyzzycgn/Wind-Turbines-relaunched?label=Bug%20Reports&style=for-the-badge)](https://github.com/xyzzycgn/Wind-Turbines-relaunched/issues) [![](https://img.shields.io/github/issues-pr/xyzzycgn/Wind-Turbines-relaunched?label=Pull%20Requests&style=for-the-badge)](https://github.com/xyzzycgn/Wind-Turbines-relaunched/pulls) 
+
 # Wind Turbines relaunched
 ## Features
 Wind Turbines produce free energy, but are expensive to build and don't have a steady output.

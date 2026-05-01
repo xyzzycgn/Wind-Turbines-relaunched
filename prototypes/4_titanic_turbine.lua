@@ -237,7 +237,8 @@ if handle_settings.WindTurbine4() then
             max_health = 5000,
             resistances = {
                 {type = 'impact', percent = 60, decrease = 30}
-            }
+            },
+		    hidden_in_factoriopedia = true
         }
     })
 end

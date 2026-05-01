@@ -147,6 +147,7 @@ data:extend({
         max_health = 1200,
         resistances = {
             {type = 'impact', percent = 45, decrease = 10}
-        }
+        },
+		hidden_in_factoriopedia = true
     }
 })

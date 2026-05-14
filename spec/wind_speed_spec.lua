@@ -1,7 +1,8 @@
 ---
 --- Tests for scripts/wind_speed.lua
 ---
-require('test.BaseTest')
+local Require = require("test.require")
+require = Require.replace(require)
 
 -- SUT
 local wind_speed = require("scripts.wind_speed")

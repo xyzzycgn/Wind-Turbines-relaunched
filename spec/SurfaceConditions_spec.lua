@@ -29,20 +29,19 @@ describe("surface_conditions", function()
     it("loads additional planet support only when Space Age is enabled", function()
         local count = 0
 
-        local function cntIt()
-            count = count + 1
-            return "ran cntIt"
-        end
+        local s = spy.new(function()
+            return "ran spy"
+        end)
 
-        assert.is_nil(sc.check_existence_of_SPA(cntIt))
-        assert.are.equal(0, count)
+        assert.is_nil(sc.check_existence_of_SPA(s))
+        assert.spy(s).was_not_called()
 
         mods["bla-mod"] = true
-        assert.is_nil(sc.check_existence_of_SPA(cntIt))
-        assert.are.equal(0, count)
+        assert.is_nil(sc.check_existence_of_SPA(s))
+        assert.spy(s).was_not_called()
 
         mods["space-age"] = true
-        assert.are.equal("ran cntIt", sc.check_existence_of_SPA(cntIt))
-        assert.are.equal(1, count)
+        assert.are.equal("ran spy", sc.check_existence_of_SPA(s))
+        assert.spy(s).was_called(1)
     end)
 end)

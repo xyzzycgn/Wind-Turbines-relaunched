@@ -26,5 +26,5 @@ jobs:
       - name: Run Busted
         run: |
           eval "$(luarocks path --bin)"
-          busted -run=CI --exclude-tags=no_coverage --coverage
+          busted -run=CI --exclude-tags=no_coverage --coverage --shuffle
           busted -run=CI --tags=no_coverage --no-coverage

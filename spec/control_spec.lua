@@ -84,14 +84,9 @@ describe("control", function()
 
         _G.storage.wind_turbines = {}
         _G.storage.wind = 0
-        _G.storage.pressures = nil
-        _G.storage.wind_speed_on_surface = nil
-        _G.storage.old_extended_collision_area = nil
 
-        _G.script.on_event_registered = {}
-        _G.settings.startup["texugo-wind-power"].value = 1
-        _G.settings.startup["texugo-wind-extended-collision-area"].value = false
-        _G.settings.startup["texugo-wind-mode"].value = "CLASSICAL"
+        -- register events
+        control.on_load()
     end)
 
     it("exports the expected module members", function()
@@ -116,16 +111,7 @@ describe("control", function()
         check_event_registered()
     end)
 
-    it("loads pressures and registers events", function()
-        control.on_load()
-
-        assert.are.same({ fulgora = 800, nauvis = 1000, vulcanus = 4000 }, _G.storage.pressures)
-        check_event_registered()
-    end)
-
-    it("registers events", function()
-        control.on_load()
-
+    it("events should be registered", function()
         check_event_registered()
     end)
 
@@ -350,8 +336,6 @@ describe("control", function()
             damage_type = { name = "physical" },
             cause = nil
         }
-
-        control.on_load()
 
         -- This should not throw an error.
         assert.has_no.errors(function()

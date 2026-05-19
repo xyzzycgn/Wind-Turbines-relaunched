@@ -28,7 +28,7 @@ There are several options you can use to configure behaviour of this mod.
     Use of the original (periodic) function with identical values of wind strength on all surfaces
   - _surface_  
     Uses wind strength determined by the surface (individual for each surface) changing in a more random based manner
-  - _surface + pressure_ (since version in 2.1.1) 
+  - _surface + pressure_ (since version in 2.1.1)  
     Wind strength is determined like in mode _surface_, but additionally the energy yield is influenced by atmospheric 
     pressure of the planet/moon (increases at higher pressure and decreases at lower pressure). The change is based on 
     the ratio of air pressure compared to nauvis. This is the default. If mod 

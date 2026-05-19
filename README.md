@@ -24,21 +24,23 @@ There are several options you can use to configure behaviour of this mod.
 
 - Determination of wind strength (since version 2.1.1, extended from 2.1.0)  
   Here you can choose how this mod calculates the wind strength (and thus the energy yield). There are three different modes:
-  - classical  
+  - _classical_  
     Use of the original (periodic) function with identical values of wind strength on all surfaces
-  - surface  
+  - _surface_  
     Uses wind strength determined by the surface (individual for each surface) changing in a more random based manner
-  - surface + pressure (new in 2.1.1) 
+  - _surface + pressure_ (new in 2.1.1) 
     Wind strength is determined like in mode _surface_, but additionally the energy yield is influenced by atmospheric 
     pressure of the planet/moon (increases at higher pressure and decreases at lower pressure). The change is based on 
-    the ratio of air pressure compared to nauvis. This is the default.
+    the ratio of air pressure compared to nauvis. This is the default. If mod 
+    [Space Exploration](https://mods.factorio.com/mod/space-exploration) is loaded, this option is **not available** 
+    (_surface_ becomes default), because Space Exploration lacks the necessary information about planetary pressures.
 
 - Wind turbines take up more space (since version 2.1.0)    
-  If enabled, the space behind the wind turbines is reserved, so that nothing can be built there (classical behaviour, 
+  If enabled, the space behind the wind turbines is reserved so that nothing can be built there (classical behaviour, 
   **disabled** by default).
 
 - higher construction costs (since version 2.2.1)
-  If enabled, construction of turbines requires more resources (disabled by default)
+  If enabled, construction of turbines requires more resources (**disabled** by default)
 
 
 ## Quality

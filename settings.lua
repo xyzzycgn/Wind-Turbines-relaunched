@@ -1,3 +1,5 @@
+local se_loaded = mods['space-exploration']
+
 data:extend{
 	{
 		type = 'int-setting',
@@ -20,11 +22,15 @@ data:extend{
 		name = "texugo-wind-mode",
 		order = "c",
 		setting_type = "startup",
-		default_value = "SURFACE+PRESSURE",
+		-- fix for #36
+		-- mod SE lacks nessecary informations (pressure on planets) due to missing prototypes with surface_properties
+		-- so change default if mod is loaded
+		default_value = se_loaded and "SURFACE" or "SURFACE+PRESSURE",
 		allowed_values = {
 			"CLASSICAL",
 			"SURFACE",
-			"SURFACE+PRESSURE",
+			-- see above - remove this option if mod SE is loaded
+			not se_loaded and "SURFACE+PRESSURE" or nil,
 		}
 	},
 	{

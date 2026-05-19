@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.2.3
+Date: 2026-05-19
+  Bugfixes:
+    - Disable mode "SURFACE+PRESSURE" to avoid crashing when mod Space Exploration is loaded, while placing
+      turbines on other planets than nauvis. Without Space Exploration nothing will be affected.
+---------------------------------------------------------------------------------------------------
 Version: 2.2.2
 Date: 2026-05-01
   Bugfixes:
@@ -14,44 +20,44 @@ Date: 2025-09-25
   Bugfixes:
     - Fixed problem with migration script for 2.1.2
   Changes:
-    - changed internal representation of turbines
+    - Changed internal representation of turbines
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.2
 Date: 2025-08-22
   Balancing:
-    - made wind speed function less erratic (and thus a bit more reliable)
+    - Made wind speed function less erratic (and thus a bit more reliable)
   Changes:
-    - improved (early game) integration for Krastorio 2 / Krastorio 2 Spaced Out
+    - Improved (early game) integration for Krastorio 2 / Krastorio 2 Spaced Out
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2025-08-07
   Balancing:
-    - reduced maximum of allowed pressure for building on a surface to a reasonable value
+    - Reduced maximum of allowed pressure for building on a surface to a reasonable value
   Changes:
-    - introduced 3rd operational mode for wind speed/energy yield calculation
-    - made power output and displayed values in gui consistent
+    - Introduced 3rd operational mode for wind speed/energy yield calculation
+    - Made power output and displayed values in gui consistent
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2025-07-18
   Changes:
-    - added an option to switch between 2 modes for wind speed
-    - added an option to switch between 2 modes for space requirements of turbines
+    - Added an option to switch between 2 modes for wind speed
+    - Added an option to switch between 2 modes for space requirements of turbines
       (for details of both please have a look at the README.md)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.9
 Date: 2025-07-10
   Feature:
-    - introduce increase of production with higher quality of entity
+    - Introduce increase of production with higher quality of entity
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.8
 Date: 2025-07-04
   Locale:
-    - adjustments in locale ru. thx to Onseshigo
+    - Adjustments in locale ru. Thx to Onseshigo
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.7
 Date: 2025-05-16
   Locale:
-    - new locales
+    - New locales
         ελληνικά (el)
         magyar (hu)
         türkçe (tr)
@@ -59,7 +65,7 @@ Date: 2025-05-16
 Version: 2.0.6
 Date: 2025-04-01
   Locale:
-    - new locales
+    - New locales
       suomi (fi)
       norsk (no)
       svenska (sv-SE)
@@ -67,7 +73,7 @@ Date: 2025-04-01
 Version: 2.0.5
 Date: 2025-03-16
   Locale:
-    - new locales
+    - New locales
       한국인 (ko)
       中国人 (zh-CN)
       中國人 (zh-TW)
@@ -75,7 +81,7 @@ Date: 2025-03-16
 Version: 2.0.4
 Date: 2025-03-09
   Locale:
-    - added a few locales
+    - Added a few locales
       čeština (cs)
       italiano (it)
       nederlands (nl)
@@ -99,7 +105,7 @@ Date: 2025-03-01
 Version: 2.0.1
 Date: 2025-02-25
   Locale:
-    - added a few locales
+    - Added a few locales
       deutsch (de)
       español (es-ES)
       français (fr)
@@ -109,10 +115,10 @@ Date: 2025-02-25
 Version: 2.0.0
 Date: 2025-02-19
   Features:
-    - ported to V 2.0 of game
-    - compatible with both base game and space age extension
+    - Ported to V 2.0 of game
+    - Compatible with both base game and space age extension
   Info:
-    - due to the withdrawal of rocket-control-unit titanic turbine now uses the former ingredients of it
+    - Due to the withdrawal of rocket-control-unit titanic turbine now uses the former ingredients of it
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.3
 Date: 2022-07-10
@@ -280,4 +286,4 @@ Version: 0.0.2
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.1
   Changes:
-    - first release
+    - First release

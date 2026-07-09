@@ -219,7 +219,7 @@ local function build_entity(event)
             surface = twt.surface
         }
         local collision_rect = twt.surface.create_entity{name = turbine_map[twt.name], position = twt.position, force = twt.force}
-        collision_rect.minable = false
+        collision_rect.minable_flag = false -- since V2.1 of base game minable_flag must be used - fix for #40
         collision_rect.health = twt.health
     end
 end

@@ -75,10 +75,8 @@ end
 describe("control", function()
     before_each(function()
         _G.prototypes = {
-            space_location = {
-                nauvis = { type = "planet", surface_properties = { pressure = 1000 } },
-                vulcanus = { type = "planet", surface_properties = { pressure = 4000 } },
-                fulgora = { type = "planet", surface_properties = { pressure = 800 } }
+            surface_property = {
+                pressure = { default_value = 1000 }
             }
         }
 
@@ -97,7 +95,7 @@ describe("control", function()
         assert.is_not_nil(control.on_configuration_changed)
         assert.is_not_nil(control.on_nth_tick)
         assert.are.equal(2, table_size(control.on_nth_tick))
-        assert.are.equal(6, table_size(control.events))
+        assert.are.equal(4, table_size(control.events))
     end)
 
     it("initializes storage and registers events", function()
@@ -106,7 +104,6 @@ describe("control", function()
         assert.are.equal(0, _G.storage.wind)
         assert.are.same({}, _G.storage.wind_turbines)
         assert.are.same({}, _G.storage.wind_speed_on_surface)
-        assert.are.same({ fulgora = 800, nauvis = 1000, vulcanus = 4000 }, _G.storage.pressures)
 
         check_event_registered()
     end)
@@ -220,26 +217,6 @@ describe("control", function()
         control.events[_G.defines.events.on_object_destroyed](event)
 
         assert.is_nil(_G.storage.wind_turbines[456])
-    end)
-
-    it("updates pressures on surface events", function()
-        -- Test surface created event.
-        _G.storage.pressures = { fulgora = 800, nauvis = 1000, vulcanus = 4000 }
-        _G.prototypes.space_location.new_planet = {
-            type = "planet",
-            surface_properties = { pressure = 1500 }
-        }
-
-        control.events[_G.defines.events.on_surface_created]()
-
-        assert.are.equal(1500, _G.storage.pressures.new_planet)
-
-        -- Test surface deleted event.
-        _G.prototypes.space_location.new_planet = nil
-
-        control.events[_G.defines.events.on_surface_deleted]()
-
-        assert.is_nil(_G.storage.pressures.new_planet)
     end)
 
     it("applies quality factors", function()
@@ -384,7 +361,6 @@ describe("control", function()
         -- Test setup
         _G.storage.wind = 1
         _G.storage.wind_turbines = {}
-        _G.storage.pressures = { nauvis = 1000, vulcanus = 4000 }
 
         local nauvis_entity = {
             valid = true,
@@ -406,13 +382,13 @@ describe("control", function()
             nauvis_entity,
             "texugo-wind-turbine",
             { x = 0, y = 0 },
-            { index = 1, name = "nauvis" }
+            { index = 1, name = "nauvis", get_property = function(name) return 1000 end }
         )
         _G.storage.wind_turbines[2] = mock_turbine(
             vulcanus_entity,
             "texugo-wind-turbine",
             { x = 0, y = 0 },
-            { index = 2, name = "vulcanus" }
+            { index = 2, name = "vulcanus", get_property = function(name) return 4000 end }
         )
 
         control_test.on_nth_tick[120]()

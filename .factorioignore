@@ -1,5 +1,11 @@
 test/
 lib/
+spec/
+.busted
+.luacov
+mod_info.yml
+README.md
+turbines.jpg
 .git/
 .github/
 .gitignore

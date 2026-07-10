@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.2
+Date: 2026-07-10
+  Bugfixes:
+    - Fix crash in wind mode "surface + pressure" when a turbine is placed on a surface with no associated planet.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.1
 Date: 2026-07-09
   Bugfixes:

@@ -1,3 +1,8 @@
+-- The base game hides the "Toggle visibility of tall entities" shortcut
+-- unless something (normally Elevated Rails) unhides it. Our turbines are
+-- tall, so unhide it ourselves.
+data.raw["shortcut"]["toggle-tall-entity-visibility"].hidden = false
+
 require 'prototypes.1_windmill'
 require 'prototypes.2_wind_generator'
 require 'prototypes.3_wind_turbine'

@@ -8,7 +8,6 @@
 	"homepage": "",
 	"dependencies": [
 		"base >= 2.1.9",
-		"enable-toggle-tall-button >= 1.0.1",
 		"? bobelectronics",
 		"? Krastorio2 >= 2.0.8",
 		"? Krastorio2-spaced-out >= 1.4.12"

@@ -48,26 +48,37 @@ Quality (introduced by SPA) is supported. The different quality tiers offer incr
 Increase of energy output is analogous to that of a solar panel.
 
 ## Supported locales
-As of version 2.0.1 several locales are supported. Currently, these are:
+As of version 2.5.0 several locales are supported. Currently, these are:
+- български (bg)
+- català (ca)
 - čeština (cs)
+- dansk (da)
 - deutsch (de)
 - ελληνικά (el)
 - english (en) - default
+- esperanto (eo)
 - español (es-ES)
 - suomi (fi)
 - français (fr)
+- hrvatski (hr)
 - magyar (hu)
+- bahasa Indonesia (id)
 - italiano (it)
 - 日本語 (ja)
 - 한국어 (ko)
 - nederlands (nl)
 - norsk (no)
 - polski (pl)
-- português (pt-BR)
+- português do Brasil (pt-BR)
+- português de Portugal (pt-PT)
+- română (ro)
 - русский (ru)
+- slovenčina (sk)
+- slovenščina (sl)
+- српски (sr)
 - svenska (sv-SE)
 - türkçe (tr)
-- українська (uk-UA)
+- українська (uk)
 - 简体中文 (zh-CN)
 - 繁體中文 (zh-TW)
 

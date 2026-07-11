@@ -59,7 +59,7 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - magyar (hu)
 - italiano (it)
 - 日本語 (ja)
-- 한국인 (ko)
+- 한국어 (ko)
 - nederlands (nl)
 - norsk (no)
 - polski (pl)

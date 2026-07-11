@@ -8,7 +8,6 @@ Date: 2026-07-11
     - Fix crash on load when toggling giant wind turbine setting off with existing giant turbines.
     - Fix fast-replace of quality turbines not being possible.
     - Add missing elevated rail collision to turbines.
-    - Fix crash when loading saves from mod version 2.0.1 or older with the giant turbine disabled.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2026-07-10

@@ -1,5 +1,9 @@
 test/
 lib/
+spec/
+.busted
+.luacov
+mod_info.yml
 .git/
 .github/
 .gitignore

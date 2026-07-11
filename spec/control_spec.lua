@@ -66,7 +66,7 @@ local function mock_turbine(entity, name, position, surface)
     }
 end
 
-local function check_event_registered()
+local function check_no_events_registered()
     assert.are.equal(0, table_size(_G.script.on_event_registered))
 end
 
@@ -99,7 +99,7 @@ describe("control", function()
         assert.are.same({}, _G.storage.wind_turbines)
         assert.are.same({}, _G.storage.wind_speed_on_surface)
 
-        check_event_registered()
+        check_no_events_registered()
     end)
 
     it("resets wind count when the threshold is reached", function()

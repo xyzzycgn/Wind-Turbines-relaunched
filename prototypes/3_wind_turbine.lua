@@ -12,7 +12,6 @@ local function insert_surface_conditions()
 end
 
 local powersetting = handle_settings.WindPower()
-local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
 local function make_recipe()
@@ -88,6 +87,7 @@ data:extend({
         icon = sprites.sprite 'windh_icon.png',
         icon_size = 32,
         flags = {"player-creation","placeable-neutral", "not-rotatable"},
+        tall = true,
         minable = {mining_time = 1, result = 'texugo-wind-turbine3'},
         max_health = 1200,
         resistances = {
@@ -98,9 +98,9 @@ data:extend({
         corpse = 'big-remnants',
         dying_explosion = 'big-explosion',
         fast_replaceable_group = 'texugo-wind-turbine3',
-        collision_mask = { layers = { item = true, object = true, water_tile = true } },
-        collision_box = extended_collision_area and {{ -2.9, -7.4 }, { 2.9, 1.4 }} or {{ -2.9, -1.4 }, { 2.9, 1.4 }},
-        selection_box = extended_collision_area and {{ -3,   -7.5 }, {   3, 1.5 }} or {{ -3,   -1.5 }, {   3, 1.5 }},
+        collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } },
+        collision_box = {{ -2.9, -1.4 }, { 2.9, 1.4 }},
+        selection_box = {{ -3,   -1.5 }, {   3, 1.5 }},
         energy_source = {
             type = 'electric',
             render_no_power_icon = false,
@@ -134,20 +134,5 @@ data:extend({
         },
         min_perceived_performance = 1.0,
         surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
-    },
-    {
-        type = 'simple-entity-with-owner',
-        name = 'twt-collision-rect3',
-        flags = {'not-deconstructable', 'not-on-map', 'placeable-off-grid', 'not-repairable', 'not-blueprintable', 'not-selectable-in-game', 'not-in-kill-statistics'},
-        collision_box = {{-1.9, -1.2}, {1.9, 1.4}},
-        picture = {
-            filename = "__core__/graphics/empty.png",
-            size = 1
-        },
-        max_health = 1200,
-        resistances = {
-            {type = 'impact', percent = 45, decrease = 10}
-        },
-		hidden_in_factoriopedia = true
     }
 })

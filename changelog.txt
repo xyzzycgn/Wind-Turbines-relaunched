@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.4.0
+Date: 2026-07-11
+  Features:
+    - All but the smallest turbines now use Factorio 2.1 "Toggle visibility of tall entities" feature. This is base game feature and is available without Elevated Rails or Space Age.
+    - Remove "Extended collision area" setting, which is no longer needed to avoid hiding objects behind turbines.
+  Bugfixes:
+    - Fix crash on load when toggling giant wind turbine setting off with existing giant turbines.
+    - Fix fast-replace of quality turbines not being possible.
+    - Add missing elevated rail collision to turbines.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2026-07-10
   Bugfixes:

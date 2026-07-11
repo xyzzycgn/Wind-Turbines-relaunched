@@ -1,2 +1,4 @@
 .idea/
 *.iml
+luacov.stats.out
+wind-turbines-luacov.report.html

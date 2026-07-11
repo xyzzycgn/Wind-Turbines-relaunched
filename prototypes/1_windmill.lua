@@ -12,7 +12,6 @@ local function insert_surface_conditions()
 	return sc
 end
 
-local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local powersetting = handle_settings.WindPower()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
@@ -72,9 +71,9 @@ data:extend({
 			{type = 'impact', percent = 15}
 		},
 		fast_replaceable_group = 'texugo-wind-turbine',
-		collision_mask = { layers = { item = true, object = true, water_tile = true } },
-		collision_box = extended_collision_area and {{ -1.4, -2.9 }, { 1.4, 0.9 }} or {{ -1.4, -0.9 }, { 1.4, 0.9 }},
-		selection_box = extended_collision_area and {{ -1.5, -3 },   { 1.5, 1   }} or {{ -1.5, -1 },   { 1.5, 1 }},
+		collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } },
+		collision_box = {{ -1.4, -0.9 }, { 1.4, 0.9 }},
+		selection_box = {{ -1.5, -1 },   { 1.5, 1 }},
 
 		energy_source = {
 			type = 'electric',
@@ -103,21 +102,5 @@ data:extend({
 		},
 		min_perceived_performance = 1.0,
 		surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
-	},
-	{
-		type = 'simple-entity-with-owner',
-		name = 'twt-collision-rect',
-		flags = {'not-deconstructable', 'not-on-map', 'placeable-off-grid', 'not-repairable', 'not-blueprintable'},
-		selectable_in_game = false,
-		collision_box = {{-1, -0.7}, {1, 0.9}},
-		picture = {
-			filename = "__core__/graphics/empty.png",
-			size = 1
-		},
-		max_health = 100,
-		resistances = {
-			{type = 'impact', percent = 15}
-		},
-		hidden_in_factoriopedia = true
 	}
 })

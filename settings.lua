@@ -35,16 +35,9 @@ data:extend{
 	},
 	{
 		type = 'bool-setting',
-		name = 'texugo-wind-extended-collision-area',
-		setting_type = 'startup',
-		default_value = false,
-		order = 'd',
-	},
-	{
-		type = 'bool-setting',
 		name = 'texugo-wind-expensive-recipes',
 		setting_type = 'startup',
 		default_value = false,
-		order = 'e',
+		order = 'd',
 	},
 }

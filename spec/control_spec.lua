@@ -10,7 +10,6 @@ _G.storage = {}
 _G.settings = {
     startup = {
         ["texugo-wind-power"] = { value = 1 },
-        ["texugo-wind-extended-collision-area"] = { value = false },
         ["texugo-wind-mode"] = { value = "CLASSICAL" },
     }
 }
@@ -68,8 +67,7 @@ local function mock_turbine(entity, name, position, surface)
 end
 
 local function check_event_registered()
-    assert.are.equal(1, table_size(_G.script.on_event_registered))
-    assert.are.equal("function", type(_G.script.on_event_registered[_G.defines.events.on_entity_damaged]))
+    assert.are.equal(0, table_size(_G.script.on_event_registered))
 end
 
 describe("control", function()
@@ -82,23 +80,19 @@ describe("control", function()
 
         _G.storage.wind_turbines = {}
         _G.storage.wind = 0
-
-        -- register events
-        control.on_load()
     end)
 
     it("exports the expected module members", function()
         assert.is_not_nil(control)
         assert.are.equal("table", type(control))
         assert.is_not_nil(control.on_init)
-        assert.is_not_nil(control.on_load)
         assert.is_not_nil(control.on_configuration_changed)
         assert.is_not_nil(control.on_nth_tick)
         assert.are.equal(2, table_size(control.on_nth_tick))
         assert.are.equal(4, table_size(control.events))
     end)
 
-    it("initializes storage and registers events", function()
+    it("initializes storage", function()
         control.on_init()
 
         assert.are.equal(0, _G.storage.wind)
@@ -106,20 +100,6 @@ describe("control", function()
         assert.are.same({}, _G.storage.wind_speed_on_surface)
 
         check_event_registered()
-    end)
-
-    it("events should be registered", function()
-        check_event_registered()
-    end)
-
-    it("updates configuration state", function()
-        -- Test initial setup.
-        _G.storage.old_extended_collision_area = nil
-
-        control.on_configuration_changed()
-
-        -- The stored value should match the current setting.
-        assert.are.equal(false, _G.storage.old_extended_collision_area)
     end)
 
     it("resets wind count when the threshold is reached", function()
@@ -166,14 +146,7 @@ describe("control", function()
         local mock_entity = {
             name = "texugo-wind-turbine",
             position = { x = 0, y = 0 },
-            surface = {
-                create_entity = function(params)
-                    return {
-                        minable = true,
-                        health = 100
-                    }
-                end
-            },
+            surface = {},
             force = "player",
             health = 100
         }
@@ -193,23 +166,11 @@ describe("control", function()
 
     it("removes destroyed turbine objects", function()
         -- Setup mock turbine.
-        local mock_surface = {
-            valid = true,
-            find_entities_filtered = function(params)
-                return {
-                    {
-                        destroy = function()
-                        end
-                    }
-                }
-            end
-        }
-
         _G.storage.wind_turbines[456] = {
-            { name = "texugo-wind-turbine" },
-            "texugo-wind-turbine",
-            { x = 0, y = 0 },
-            mock_surface
+            entity = { name = "texugo-wind-turbine" },
+            name = "texugo-wind-turbine",
+            position = { x = 0, y = 0 },
+            surface = { valid = true }
         }
 
         local event = { registration_number = 456 }
@@ -286,41 +247,7 @@ describe("control", function()
         assert.is_true(_G.storage.wind_turbines[4].entity.power_production > _G.storage.wind_turbines[3].entity.power_production)
     end)
 
-    it("handles entity damage events", function()
-        -- Mock setup for the entity damage event.
-        local damaged_entity = {
-            name = "twt-collision-rect",
-            surface = {
-                find_entities_filtered = function(params)
-                    return {
-                        {
-                            damage = function(amount, force, damage_type, cause)
-                                -- Mock damage function.
-                            end,
-                            valid = true,
-                            health = 50
-                        }
-                    }
-                end
-            },
-            position = { x = 0, y = 0 }
-        }
-
-        local event = {
-            entity = damaged_entity,
-            original_damage_amount = 25,
-            force = "enemy",
-            damage_type = { name = "physical" },
-            cause = nil
-        }
-
-        -- This should not throw an error.
-        assert.has_no.errors(function()
-            _G.script.on_event_registered[_G.defines.events.on_entity_damaged](event)
-        end)
-    end)
-
--- Test that different planets with different pressures affect power output
+    -- Test that different planets with different pressures affect power output
 -- Vulcanus has higher pressure (4000) than Nauvis (1000), so should produce more power
 -- (This test assumes wind_scale_with_pressure is enabled and use_surface_wind_speed is enabled)
     it("scales power output by pressure", function()
@@ -331,7 +258,6 @@ describe("control", function()
         _G.settings = {
             startup = {
                 ["texugo-wind-power"] = { value = 1 },
-                ["texugo-wind-extended-collision-area"] = { value = false },
                 ["texugo-wind-mode"] = { value = "SURFACE+PRESSURE" },
             }
         }

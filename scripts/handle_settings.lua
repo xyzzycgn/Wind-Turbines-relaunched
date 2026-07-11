@@ -34,11 +34,6 @@ function handle_settings.windMode()
 end
 
 --- @return boolean
-function handle_settings.useExtendedCollisionArea()
-    return settings.startup['texugo-wind-extended-collision-area'].value
-end
-
---- @return boolean
 function handle_settings.useSurfaceWindSpeed()
     return windModeAsNumber() > 0
 end

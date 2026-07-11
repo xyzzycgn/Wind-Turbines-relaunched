@@ -12,7 +12,6 @@ local function insert_surface_conditions()
 end
 
 local powersetting = handle_settings.WindPower()
-local extended_collision_area = handle_settings.useExtendedCollisionArea()
 local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
 local function make_recipe()
@@ -84,6 +83,7 @@ data:extend({
         icon = sprites.sprite 'winds_icon.png',
         icon_size = 32,
         flags = {"player-creation","placeable-neutral", "not-rotatable"},
+        tall = true,
         minable = {mining_time = 0.3, result = 'texugo-wind-turbine2'},
         max_health = 300,
         corpse = 'medium-remnants',
@@ -94,9 +94,9 @@ data:extend({
             {type = 'impact', percent = 30, decrease = 4}
         },
         fast_replaceable_group = 'texugo-wind-turbine2',
-        collision_mask = { layers = { item = true, object = true, water_tile = true } },
-        collision_box = extended_collision_area and {{ -1.9, -4.9 }, { 1.9, 0.9 }} or {{ -1.9, -0.9 }, { 1.9, 0.9 }},
-        selection_box = extended_collision_area and {{  -2,    -5 }, {  2,    1 }} or {{  -2,    -1 }, {  2,    1 }},
+        collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } },
+        collision_box = {{ -1.9, -0.9 }, { 1.9, 0.9 }},
+        selection_box = {{  -2,    -1 }, {  2,    1 }},
 
         energy_source = {
             type = 'electric',
@@ -126,21 +126,5 @@ data:extend({
         },
         min_perceived_performance = 1.0,
         surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
-    },
-    {
-        type = 'simple-entity-with-owner',
-        name = 'twt-collision-rect2',
-        flags = {'not-deconstructable', 'not-on-map', 'placeable-off-grid', 'not-repairable', 'not-blueprintable'},
-        selectable_in_game = false,
-        collision_box = {{-1, -1.4}, {1.8, 0.9}},
-        picture = {
-            filename = "__core__/graphics/empty.png",
-            size = 1
-        },
-        max_health = 300,
-        resistances = {
-            {type = 'impact', percent = 30, decrease = 4}
-        },
-		hidden_in_factoriopedia = true
     }
 })

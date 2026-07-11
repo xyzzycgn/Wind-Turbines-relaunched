@@ -15,7 +15,6 @@ if handle_settings.WindTurbine4() then
     end
 
     local powersetting = handle_settings.WindPower()
-    local extended_collision_area = handle_settings.useExtendedCollisionArea()
     local scaleWithQualityAndPressure = handle_settings.scaleWithQualityAndPressure()
 
     local function make_recipe()
@@ -94,6 +93,7 @@ if handle_settings.WindTurbine4() then
             icon = sprites.sprite 'titanicicon.png',
             icon_size = 64,
             flags = {"player-creation", "placeable-neutral", "not-rotatable", "not-flammable"},
+            tall = true,
             minable = {mining_time = 3, result = 'texugo-wind-turbine4'},
             corpse = 'rocket-silo-remnants',
             dying_explosion = 'massive-explosion',
@@ -105,9 +105,9 @@ if handle_settings.WindTurbine4() then
                 {type = 'impact', percent = 60, decrease = 30}
             },
             fast_replaceable_group = 'texugo-wind-turbine4',
-            collision_mask = { layers = { item = true, object = true, water_tile = true } },
-            collision_box = extended_collision_area and {{ -5.9, -13.9 }, { 5.9, 3.9 }} or {{ -5.9, -3.9 }, { 5.9, 3.9 }} ,
-            selection_box = extended_collision_area and {{   -6,   -14 }, {   6,   4 }} or {{   -6,   -4 }, {   6,   4 }} ,
+            collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } },
+            collision_box = {{ -5.9, -3.9 }, { 5.9, 3.9 }} ,
+            selection_box = {{   -6,   -4 }, {   6,   4 }} ,
 
             energy_source = {
                 type = 'electric',
@@ -223,22 +223,6 @@ if handle_settings.WindTurbine4() then
             },
             min_perceived_performance = 1,
             surface_conditions = surface_conditions.check_existence_of_SPA(insert_surface_conditions),
-        },
-        {
-            type = 'simple-entity-with-owner',
-            name = 'twt-collision-rect4',
-            flags = {'not-deconstructable', 'not-on-map', 'placeable-off-grid', 'not-repairable', 'not-blueprintable'},
-            selectable_in_game = false,
-            collision_box = {{-4, -2.3}, {4, 3.9}},
-            picture = {
-                filename = "__core__/graphics/empty.png",
-                size = 1
-            },
-            max_health = 5000,
-            resistances = {
-                {type = 'impact', percent = 60, decrease = 30}
-            },
-		    hidden_in_factoriopedia = true
         }
     })
 end

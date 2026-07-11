@@ -6,7 +6,6 @@ local handle_settings = require("scripts/handle_settings")
 local wind_speed = require("scripts/wind_speed")
 
 local powersetting = handle_settings.WindPower()
-local use_extended_collision_area = handle_settings.useExtendedCollisionArea()
 local use_surface_wind_speed = handle_settings.useSurfaceWindSpeed()
 local wind_scale_with_pressure = handle_settings.scaleWithPressure()
 
@@ -25,19 +24,11 @@ local quality_factor = {
     [4] = 2.5
 }
 
--- collision rectangles
-local turbine_map = {
-    ['texugo-wind-turbine'] = 'twt-collision-rect',
-    ['texugo-wind-turbine2'] = 'twt-collision-rect2',
-    ['texugo-wind-turbine3'] = 'twt-collision-rect3',
-    ['texugo-wind-turbine4'] = 'twt-collision-rect4',
-}
-
-local reverse_map = {
-    ['twt-collision-rect'] = 'texugo-wind-turbine',
-    ['twt-collision-rect2'] = 'texugo-wind-turbine2',
-    ['twt-collision-rect3'] = 'texugo-wind-turbine3',
-    ['twt-collision-rect4'] = 'texugo-wind-turbine4',
+local turbine_names = {
+    'texugo-wind-turbine',
+    'texugo-wind-turbine2',
+    'texugo-wind-turbine3',
+    'texugo-wind-turbine4',
 }
 
 local function resetWindCount(event)
@@ -104,141 +95,25 @@ local function businessLogic(event)
 end
 -- ###############################################################
 
---- check after switching use_extended_collision_area on
-local function check_collisions()
-    for _, wind_turbine in pairs(storage.wind_turbines) do
-        local entity = wind_turbine.entity
-        local name = wind_turbine.name
-        local position= wind_turbine.position
-        local surface = wind_turbine.surface
-        local cb = entity.prototype.collision_box
-        local cm = entity.prototype.collision_mask.layers
-        local area = {{ position.x + cb.left_top.x, position.y + cb.left_top.y },
-                      { position.x + cb.right_bottom.x, position.y + cb.right_bottom.y }}
-
-        -- ignore ore, ...
-        local inside = surface.find_entities_filtered( { area = area, collision_mask = cm })
-
-        if table_size(inside) > 2 then
-            -- if colliding, spill it at the former position
-            local quality = entity.quality.name
-            local force = entity.force
-            -- create alert
-            for _, player in pairs(force.players) do
-                player.add_custom_alert(entity,
-                                        { type = 'entity', name = name, quality = quality, },
-                                        { "alerts.texugo-wind-extended-collision-area" },
-                                        true)
-            end
-
-            entity.destroy()
-            surface.spill_item_stack({ position = position,
-                                       stack = { name = name, count = 1, quality = quality },
-                                       max_radius = 1, })
-        end
-    end
-end
-
---- check after switching use_extended_collision_area off
-local function check_connectivity()
-    for _, wind_turbine in pairs(storage.wind_turbines) do
-        local entity = wind_turbine.entity
-        local name = wind_turbine.name
-        local surface = wind_turbine.surface
-
-        if not (entity.is_connected_to_electric_network() or surface.has_global_electric_network) then
-            local quality = entity.quality.name
-            local force = entity.force
-            -- create alert
-            for _, player in pairs(force.players) do
-                player.add_custom_alert(entity,
-                                        { type = 'entity', name = name, quality = quality, },
-                                        { "alerts.texugo-wind-not-connected" },
-                                        true)
-            end
-        end
-    end
-end
--- ###############################################################
-
---- register complexer events, i.e with additional filters
-local function registerEvents()
-    -- Damage to the base (can only take impact damage) is transmitted to the turbine (for example, when impacting with a car or tank)
-    script.on_event(defines.events.on_entity_damaged, function(event)
-        local entity = event.entity
-        if entity and reverse_map[entity.name] then
-            for _, turbine in pairs(entity.surface.find_entities_filtered{position = entity.position, name = reverse_map[entity.name]}) do
-                if event.cause then
-                    turbine.damage(event.original_damage_amount, event.force, event.damage_type.name, event.cause)
-                else
-                    turbine.damage(event.original_damage_amount, event.force, event.damage_type.name)
-                end
-                -- Keep the two entities damage in sync as long as the turbine hasn't been destroyed
-                if turbine and turbine.valid then
-                    entity.health = turbine.health
-                end
-            end
-        end
-    end,
-            {
-                {filter="type", type = "simple-entity-with-owner"},
-                {filter="name", name = "twt-collision-rect"},
-                {filter="name", name = "twt-collision-rect2"},
-                {filter="name", name = "twt-collision-rect3"},
-                {filter="name", name = "twt-collision-rect4"}
-            }
-    )
-end
--- ###############################################################
-
 local function build_entity(event)
     local twt = event.created_entity or event.entity
-    if turbine_map[twt.name] then
-        local registration_number = script.register_on_object_destroyed(twt)
-        storage.wind_turbines[registration_number] = {
-            entity = twt,
-            name = twt.name,
-            position = twt.position,
-            surface = twt.surface
-        }
-        local collision_rect = twt.surface.create_entity{name = turbine_map[twt.name], position = twt.position, force = twt.force}
-        collision_rect.minable_flag = false -- since V2.1 of base game minable_flag must be used - fix for #40
-        collision_rect.health = twt.health
+    for _, turbine_name in ipairs(turbine_names) do
+        if twt.name == turbine_name then
+            local registration_number = script.register_on_object_destroyed(twt)
+            storage.wind_turbines[registration_number] = {
+                entity = twt,
+                name = twt.name,
+                position = twt.position,
+                surface = twt.surface
+            }
+            break
+        end
     end
 end
 -- ###############################################################
 
 local function destroy_object(event)
-    local twt = storage.wind_turbines[event.registration_number]
-    if twt and turbine_map[twt.name] then
-        if twt.surface.valid then
-            for _, collision_rect in pairs(twt.surface.find_entities_filtered{position = twt.position, name = turbine_map[twt.name]}) do
-                collision_rect.destroy()
-            end
-        end
-    end
     storage.wind_turbines[event.registration_number] = nil
-end
--- ###############################################################
-
-local function checkSettings()
-    if storage.old_extended_collision_area == nil then
-        log("no old_extended_collision_area present")
-        --- in prior versions all turbine always had an extended collision_area
-        storage.old_extended_collision_area = true
-    end
-
-    if use_extended_collision_area ~= storage.old_extended_collision_area then
-        log("use_extended_collision_area has changed")
-        -- check existing wind turbines
-        if use_extended_collision_area then
-            check_collisions()
-        else
-            check_connectivity()
-        end
-
-        storage.old_extended_collision_area = use_extended_collision_area
-    end
 end
 -- ###############################################################
 
@@ -247,29 +122,12 @@ local function initializer()
     storage.wind = storage.wind or 0
     storage.wind_turbines = storage.wind_turbines or {}
     storage.wind_speed_on_surface = storage.wind_speed_on_surface or {}
-
-    checkSettings()
-    registerEvents()
-end
--- ###############################################################
-
---- called from on_load
-local function load()
-    registerEvents()
-end
--- ###############################################################
-
---- called from on_configuration_changed
-local function configuration_changed()
-    checkSettings()
 end
 -- ###############################################################
 
 local control = {}
 
 control.on_init = initializer
-control.on_load = load
-control.on_configuration_changed = configuration_changed
 
 control.events = {
     [defines.events.on_built_entity] = build_entity,

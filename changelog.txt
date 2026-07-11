@@ -2,8 +2,11 @@
 Version: 2.4.0
 Date: 2026-07-11
   Features:
-    - All but the smallest turbines now use Factorio 2.1 "Toggle visibility of tall entities" feature. This is base game feature and is available without Elevated Rails or Space Age.
+    - All but the smallest turbine now uses Factorio 2.1 "Toggle visibility of tall entities" feature. This is base game feature and is available without Elevated Rails or Space Age.
     - Remove "Extended collision area" setting, which is no longer needed to avoid hiding objects behind turbines.
+  Changes:
+    - The windmill and wind generator now block player movement. The two larger turbines stay walkable, as most of their footprint is flat foundation.
+    - Turbines can no longer be built on meltable ice, which may be relevant on modded planets.
   Bugfixes:
     - Fix crash on load when toggling giant wind turbine setting off with existing giant turbines.
     - Fix fast-replace of quality turbines not being possible.

@@ -68,8 +68,8 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - svenska (sv-SE)
 - türkçe (tr)
 - українська (uk-UA)
-- 中国人 (zh-CN)
-- 中國人 (zh-TW)
+- 简体中文 (zh-CN)
+- 繁體中文 (zh-TW)
 
 ## Contributors
 - Onseshigo: adjustments in locale ru

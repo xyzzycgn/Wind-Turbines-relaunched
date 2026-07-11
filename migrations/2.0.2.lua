@@ -3,9 +3,19 @@
 --- DateTime: 01.03.25 14:39
 ---
 
-log("migration to 2. 0.2")
+log("migration to 2.0.2")
 
 local cnt = 0
+
+-- find_entities_filtered crashes on non-existent prototypes
+-- Ensure only existing turbines are searched for in case the giant turbine
+-- or others are disabled.
+local turbine_names = {}
+for _, name in pairs({ "texugo-wind-turbine", "texugo-wind-turbine2", "texugo-wind-turbine3", "texugo-wind-turbine4", }) do
+    if prototypes.entity[name] then
+        table.insert(turbine_names, name)
+    end
+end
 
 local function removeAndLog(entity, from)
     log("remove " .. serpent.block(entity) .. " from " .. from)
@@ -21,7 +31,7 @@ for k, surface in pairs(game.surfaces) do
     local isVulcanus = (k == "vulcanus")
     local checkneeded = isPlatform or isAquilo or isVulcanus
     if checkneeded then
-        local entities = surface.find_entities_filtered({ name = { "texugo-wind-turbine", "texugo-wind-turbine2", "texugo-wind-turbine3", "texugo-wind-turbine4", } })
+        local entities = surface.find_entities_filtered({ name = turbine_names })
         for _, entity in pairs(entities) do
             if (isPlatform) then
                 removeAndLog(entity, surface.platform.name)

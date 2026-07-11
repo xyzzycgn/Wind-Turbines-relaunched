@@ -8,8 +8,8 @@ log("migration to 2.0.2")
 local cnt = 0
 
 -- find_entities_filtered crashes on non-existent prototypes
--- Ensure only present turbines are searched for in case the giant turbine
--- is disabled.
+-- Ensure only existing turbines are searched for in case the giant turbine
+-- or others are disabled.
 local turbine_names = {}
 for _, name in pairs({ "texugo-wind-turbine", "texugo-wind-turbine2", "texugo-wind-turbine3", "texugo-wind-turbine4", }) do
     if prototypes.entity[name] then

@@ -16,3 +16,4 @@ mod_info.yml
 .idea/
 *.iml
 .factorioignore
+translation-notes.md

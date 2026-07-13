@@ -20,6 +20,16 @@ Date: 2026-06-23
   Changes:
     - Upgrade to V 2.1 of base game
 ---------------------------------------------------------------------------------------------------
+Version: 2.2.5
+Date: 2026-07-14
+  Bugfixes:
+    - Avoid crash when a giant turbine is already placed and giant turbines become disabled afterwards.
+---------------------------------------------------------------------------------------------------
+Version: 2.2.4
+Date: 2026-07-11
+  Changes:
+    - Applied changes from branch for V 2.1 of the base game (for details see V 2.3.2)
+---------------------------------------------------------------------------------------------------
 Version: 2.2.3
 Date: 2026-05-19
   Bugfixes:

@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.4
+Date: 2026-07-14
+  Bugfixes:
+    - Avoid crash when a giant turbine is already placed and giant turbines become disabled afterwards.
+    - Corrected wrong locale code for Ukrainian localization
+  Ease of use:
+    - Added the ability to upgrade turbines (except the wooden wind turbine) with turbines of the same tier but higher
+      quality with fast replace.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.3
 Date: 2026-07-11
   Bugfixes:

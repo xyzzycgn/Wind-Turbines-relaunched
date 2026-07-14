@@ -7,6 +7,8 @@ Date: 2026-07-14
   Ease of use:
     - Added the ability to upgrade turbines (except the wooden wind turbine) with turbines of the same tier but higher
       quality with fast replace.
+  Locale:
+    - Applied changes to locale en to all locales
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.3
 Date: 2026-07-11

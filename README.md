@@ -68,8 +68,8 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - svenska (sv-SE)
 - türkçe (tr)
 - українська (uk)
-- 中国人 (zh-CN)
-- 中國人 (zh-TW)
+- 简体中文 (zh-CN)
+- 繁體中文 (zh-TW)
 
 ## Contributors
 - Onseshigo: adjustments in locale ru
@@ -78,4 +78,4 @@ As of version 2.0.1 several locales are supported. Currently these are:
 ----
 ## Relaunch of Wind Turbines from wavtrex with the necessary patches for V 2.0 of factorio.
 This mod is intended as an inplace replacement for [Wind_Generator-gfxrestyle](https://mods.factorio.com/mod/Wind_Generator-gfxrestyle) 
-which is no longer compatible with V 2.0 or higher of factorio.
+which is no longer compatible with V 2.0 of factorio.

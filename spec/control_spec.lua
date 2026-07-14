@@ -10,6 +10,7 @@ _G.storage = {}
 _G.settings = {
     startup = {
         ["texugo-wind-power"] = { value = 1 },
+        ["texugo-wind-turbine4"] = { value = true },
         ["texugo-wind-extended-collision-area"] = { value = false },
         ["texugo-wind-mode"] = { value = "CLASSICAL" },
     }
@@ -331,6 +332,7 @@ describe("control", function()
         _G.settings = {
             startup = {
                 ["texugo-wind-power"] = { value = 1 },
+                ["texugo-wind-turbine4"] = { value = true },
                 ["texugo-wind-extended-collision-area"] = { value = false },
                 ["texugo-wind-mode"] = { value = "SURFACE+PRESSURE" },
             }
@@ -347,7 +349,7 @@ describe("control", function()
         -- Temporarily replace require for wind_speed.
         local original_require = _G.require
         _G.require = function(module_name)
-            if module_name == "scripts/wind_speed" then
+            if module_name == "scripts.wind_speed" then
                 return mock_wind_speed
             end
 
@@ -355,8 +357,8 @@ describe("control", function()
         end
 
         -- Reload control module with new settings
-        package.loaded["scripts/control"] = nil
-        local control_test = _G.require("scripts/control")
+        package.loaded["scripts.control"] = nil
+        local control_test = _G.require("scripts.control")
 
         -- Test setup
         _G.storage.wind = 1

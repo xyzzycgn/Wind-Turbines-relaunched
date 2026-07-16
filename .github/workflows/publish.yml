@@ -29,3 +29,6 @@ jobs:
         with:
           action: upload
           factorio-api-key: ${{ secrets.FACTORIO_API_KEY }}
+
+  call-update-version:
+    uses: xyzzycgn/Wind-Turbines-relaunched/.github/workflows/update_version.yml@V2.1

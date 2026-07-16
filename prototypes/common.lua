@@ -24,9 +24,15 @@ local function make_recipe(base, cheap, expensive)
     return base
 end
 
+local collision_mask = { layers = {
+    item = true,
+    object = true,
+    water_tile = true,
+    elevated_rail = true,
+}}
 
-local common = {
-    make_recipe = make_recipe
+return {
+    make_recipe = make_recipe,
+    collision_mask = collision_mask,
 }
 
-return common

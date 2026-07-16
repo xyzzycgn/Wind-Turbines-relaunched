@@ -95,7 +95,7 @@ data:extend({
         },
         fast_replaceable_group = 'texugo-wind-turbine2',
         next_upgrade = 'texugo-wind-turbine2',
-        collision_mask = { layers = { item = true, object = true, water_tile = true } },
+        collision_mask = common.collision_mask,
         collision_box = extended_collision_area and {{ -1.9, -4.9 }, { 1.9, 0.9 }} or {{ -1.9, -0.9 }, { 1.9, 0.9 }},
         selection_box = extended_collision_area and {{  -2,    -5 }, {  2,    1 }} or {{  -2,    -1 }, {  2,    1 }},
 

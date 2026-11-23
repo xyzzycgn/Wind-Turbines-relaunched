@@ -5,7 +5,7 @@
 # Wind Turbines relaunched
 ## Features
 Wind Turbines produce free energy, but are expensive to build and don't have a steady output.
-This mod adds 4 tiers of turbines, from a small wooden windmill to a giant steel and refined concrete turbine.
+This mod adds 4 tiers of turbines, from a small wooden wind turbine to a giant steel and refined concrete turbine.
 
 ![wind turbines](https://github.com/xyzzycgn/Wind-Turbines-relaunched/blob/main/turbines.jpg?raw=true)
 - Alternative/complement to solar panel arrays, similar large upfront cost but free energy after
@@ -23,8 +23,8 @@ There are several options you can use to configure behaviour of this mod.
   Giant wind turbine is enabled by default.
 
 - Determination of wind strength (since version 2.1.1, extended from 2.1.0)  
-  Here you can choose how this mod calculates the wind strength (and thus the energy yield). There are three different modes:
-  - _classical_  
+  Here you can choose how this mod calculates the wind strength (and thus turbine power). There are three different modes:
+  - _classic_
     Use of the original (periodic) function with identical values of wind strength on all surfaces
   - _surface_  
     Uses wind strength determined by the surface (individual for each surface) changing in a more random based manner
@@ -48,7 +48,7 @@ Quality (introduced by SPA) is supported. The different quality tiers offer incr
 Increase of energy output is analogous to that of a solar panel.
 
 ## Supported locales
-As of version 2.0.1 several locales are supported. Currently these are:
+As of version 2.0.1 several locales are supported. Currently, these are:
 - čeština (cs)
 - deutsch (de)
 - ελληνικά (el)
@@ -59,7 +59,7 @@ As of version 2.0.1 several locales are supported. Currently these are:
 - magyar (hu)
 - italiano (it)
 - 日本語 (ja)
-- 한국인 (ko)
+- 한국어 (ko)
 - nederlands (nl)
 - norsk (no)
 - polski (pl)
@@ -78,4 +78,4 @@ As of version 2.0.1 several locales are supported. Currently these are:
 ----
 ## Relaunch of Wind Turbines from wavtrex with the necessary patches for V 2.0 of factorio.
 This mod is intended as an inplace replacement for [Wind_Generator-gfxrestyle](https://mods.factorio.com/mod/Wind_Generator-gfxrestyle) 
-which is no longer compatible with V 2.0 of factorio.
+which is no longer compatible with V 2.0 or higher of factorio.
